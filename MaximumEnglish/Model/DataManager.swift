@@ -46,19 +46,9 @@ class DataManager: NSObject {
     
     //MARK: - =============== CREATE ===============
     
-    static func NewCard(ofType type:CardType, question:String, answer:String)-> Card? {
-        var card:Card!
-        switch type {
-            
-        case .vocab:
-            
-            card = Word(question: question, answer: answer)
-            
-        case .grammar:
-            
-            card = GrammarPoint(question: question, answer: answer)
-            
-        }
+    static func NewCard(ofType type:CardType, question:String, answer:String, notes:String)-> Card? {
+        
+        let card = Card(type: type, question: question, answer: answer, notes:notes)
         
         return SavedObject(card) as? Card
         

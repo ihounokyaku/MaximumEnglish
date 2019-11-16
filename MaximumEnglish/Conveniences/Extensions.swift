@@ -88,3 +88,12 @@ extension UIDevice {
     }
     
 }
+
+extension String {
+    
+    func lettersOnly()->String {
+        return self.lowercased().trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: .punctuationCharacters)
+        
+    }
+    
+}

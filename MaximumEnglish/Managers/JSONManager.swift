@@ -23,6 +23,7 @@ enum JSONKey {
     case cardID
     case question
     case answer
+    case notes
     
     func keyValue()->String {
         
@@ -44,6 +45,8 @@ enum JSONKey {
             return "question"
         case .answer:
             return "answer"
+        case .notes:
+            return "notes"
         }
         
     }
@@ -71,6 +74,8 @@ class JSONManager: NSObject {
     
     func lessons(forLevel level:JSON)-> [JSON] { return level[JSONKey.lessons.keyValue()].arrayValue }
     
+    func notes(forLesson card:JSON)->String { return card[JSONKey.notes.keyValue()].stringValue }
+    
     func vocabulary(forLesson lesson:JSON)->[JSON] { return lesson[JSONKey.vocabularyCards.keyValue()].arrayValue }
     
     func grammar(forLesson lesson:JSON)->[JSON] { return lesson[JSONKey.grammarCards.keyValue()].arrayValue }
@@ -79,6 +84,7 @@ class JSONManager: NSObject {
     
     func answer(forCard card:JSON)->String? { return card[JSONKey.answer.keyValue()].string }
     
+    func notes(forCard card:JSON)->String { return card[JSONKey.notes.keyValue()].stringValue }
     
 
     //MARK: - =============== CREATE EDIT ===============
@@ -93,7 +99,16 @@ class JSONManager: NSObject {
         
         guard self.vocabulary(forLesson: lJSON).count > 0 || self.grammar(forLesson: lJSON).count > 0 else { return nil }
         
-        return level.lessons.filter("id == %@", id).first ?? DataManager.NewLesson(withName: name, id:id)
+        if let lesson = level.lessons.filter("id == %@", id).first {
+            return lesson
+        } else {
+            if let lesson = DataManager.NewLesson(withName: name, id:id) {
+                DataManager.Write { level.lessons.append(lesson) }
+                return lesson
+            }
+            return nil
+        }
+        
         
     }
     
@@ -146,9 +161,15 @@ class JSONManager: NSObject {
     //MARK: - ===  POPULATE DATABASE  ===
     func addCard(fromJSON cJSON:JSON, ofType type:CardType, toLesson lesson:Lesson) {
         
-        guard let question = self.question(forCard: cJSON), let answer = answer(forCard: cJSON), lesson.cards.filter("question = %@", question).first == nil else { return }
+        guard let question = self.question(forCard: cJSON)?.replacingOccurrences(of: "\r", with: ""), let answer = answer(forCard: cJSON)?.replacingOccurrences(of: "\r", with: ""), question.trimmingCharacters(in: .whitespacesAndNewlines) != "", answer.trimmingCharacters(in: .whitespacesAndNewlines) != "" else { return }
         
-        lesson.addNewCard(ofType: type, question: question, answer: answer)
+        if let existingCard = lesson.cards.filter("question = %@", question).first, self.notes(forCard: cJSON) != existingCard.notes  {
+            
+            DataManager.Write { existingCard.notes = notes(forCard: cJSON) }
+            
+        }
+        
+        lesson.addNewCard(ofType: type, question: question, answer: answer, notes:self.notes(forCard: cJSON))
         
     }
     
@@ -160,7 +181,9 @@ class JSONManager: NSObject {
         
         for lJSON in self.levels {
             
-            guard let level = self.level(fromJSON: lJSON) else { continue }
+            guard let level = self.level(fromJSON: lJSON) else {
+                print("level does not exist!")
+                continue }
             
             let lessons = self.lessons(forLevel: lJSON)
             
@@ -178,7 +201,6 @@ class JSONManager: NSObject {
                  //MARK: = remove deleted cards =
                 let allCards = vocab + grammar
                 self.removeDeletedCards(fromLesson: lesson, updatedCards: allCards)
-                
                 
                 //MARK: = iterate cards =
                 for vJSON in vocab {

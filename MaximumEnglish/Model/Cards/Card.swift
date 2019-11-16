@@ -22,6 +22,8 @@ class Card:Object {
 
     @objc dynamic var question = ""
     @objc dynamic var answer = ""
+    @objc dynamic var notes = ""
+    @objc dynamic var privateHint:String?
     @objc dynamic var level:Int = 0
     @objc dynamic private var cardType:String = "Vocabulary"
     @objc dynamic private var privateInterval:Int = 0
@@ -31,7 +33,7 @@ class Card:Object {
     
 //MARK: - =============== COMPUTED VARIABLES ===============
     
-    var type:CardType{ return self as? Word != nil ? CardType.vocab : CardType.grammar }
+    var type:CardType { return CardType(rawValue: self.cardType) ?? .vocab }
     
     var interval:Int {
         
@@ -57,18 +59,29 @@ class Card:Object {
         
     }
     
+    var hint:String? {
+        
+        get { return self.privateHint }
+        
+        set { DataManager.Write { self.privateHint = newValue }}
+        
+    }
+    
+    
+    
     
 //MARK: - =============== COLLECTIONS ===============
+    
     let collections = LinkingObjects(fromType: Collection.self, property: "cards")
     
     let tests = LinkingObjects(fromType: Test.self, property:"cards")
     
 //MARK: - =============== INIT ===============
     
-    convenience init(question:String, answer:String) {
+    convenience init(type:CardType, question:String, answer:String, notes:String) {
 
         self.init()
-        self.cardType = self.type.rawValue
+        self.cardType = type.rawValue
         self.question = question
         self.answer = answer
         

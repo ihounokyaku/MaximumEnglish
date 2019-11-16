@@ -14,6 +14,7 @@ class Lesson:Collection {
     //MARK: - =============== STORED VARS ===============
     @objc dynamic private var privateCompleted:Bool = false
     
+    
     //MARK: - =============== COMPUTED VARS ===============
     var completed:Bool {
         
@@ -23,9 +24,19 @@ class Lesson:Collection {
         
     }
     
+    var locked:Bool {
+        if self.completed { return false }
+        
+        guard let level = self.level.first, let index = level.lessons.index(of: self) else {return true}
+        
+        
+        return !(index == 0 || level.lessons[index - 1].completed)
+    }
+    
     //MARK: - =============== COLLECTIONS ===============
     
     let tests = LinkingObjects(fromType: Test.self, property:"lesson")
+    let level = LinkingObjects(fromType:Level.self, property:"lessons")
     
     //MARK: - =============== FUNC ===============
     

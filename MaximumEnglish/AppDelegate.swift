@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         let _ = try! Realm.init(configuration: Realm.Configuration.defaultConfiguration)
-      
+        print(Realm.Configuration.defaultConfiguration.fileURL)
+        
+        DataPopulator.PopulateInitialData()
         
         // Override point for customization after application launch.
         return true

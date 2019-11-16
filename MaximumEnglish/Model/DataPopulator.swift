@@ -13,9 +13,15 @@ class DataPopulator: NSObject {
     
     static func PopulateInitialData() {
         
-        guard DataManager.AllCards.count == 0 else { return }
+//        guard DataManager.AllCards.count == 0 else { return }
         
-        guard let url = Bundle.main.url(forResource: "InitialData", withExtension: "json"), let data = try? Data(contentsOf: url), let json = try? JSON(data: data) else { return }
+        guard let url = Bundle.main.url(forResource: "InitialData", withExtension: "json"), let data = try? Data(contentsOf: url), let json = try? JSON(data: data) else {
+            
+            AlertManager.PresentErrorAlert(withTitle: "ERROR", message: "Could not find initial database!")
+            
+            return
+            
+        }
        
         let jsonManager = JSONManager(json: json)
         

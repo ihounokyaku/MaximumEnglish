@@ -22,16 +22,10 @@ enum LevelName:String, CaseIterable {
 class Level:Object {
     
 //MARK: - =============== STORED VARIABLES ===============
-    @objc dynamic private var privateName:String = ""
+    @objc dynamic private var name:String = ""
     
 //MARK: - =============== COMPUTED VARIABLES ===============
-    
-    var name:String {
-        
-        get { return self.privateName }
-        
-        set { DataManager.Write { self.privateName = newValue }}
-    }
+
     
     var pastTests:Results<Test> {
         
@@ -47,7 +41,7 @@ class Level:Object {
     convenience init(name:String) {
         
         self.init()
-        self.privateName = name
+        self.name = name
         
     }
     
