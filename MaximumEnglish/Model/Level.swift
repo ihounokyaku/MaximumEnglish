@@ -22,7 +22,7 @@ enum LevelName:String, CaseIterable {
 class Level:Object {
     
 //MARK: - =============== STORED VARIABLES ===============
-    @objc dynamic private var name:String = ""
+    @objc dynamic var name:String = ""
     
 //MARK: - =============== COMPUTED VARIABLES ===============
 

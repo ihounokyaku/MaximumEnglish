@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class LevelController: UIViewController {
 
@@ -14,6 +15,7 @@ class LevelController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var checkedForUpdates = false
     
     var selectedLevel:Level?
     
@@ -22,6 +24,25 @@ class LevelController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if self.checkedForUpdates == false {
+            self.checkedForUpdates = true
+            self.checkForUpdates()
+        }
+        
+        
+    }
+    
+    func checkForUpdates() {
+        SVProgressHUD.show(withStatus: "Checking for updates...")
+        let populator = DataPopulator()
+        populator.delegate = self
+        populator.executeUpdateQuery()
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -54,5 +75,15 @@ extension LevelController: UITableViewDelegate, UITableViewDataSource {
         self.performSegue(withIdentifier: "ShowLessons", sender: self)
     }
 
+}
+
+extension LevelController:DataPopulatorDelegate {
+    func dataUpdateComplete(withError error: String?) {
+        if let realError = error { print(realError) }
+        SVProgressHUD.dismiss()
+    }
+    
+    
+    
 }
 

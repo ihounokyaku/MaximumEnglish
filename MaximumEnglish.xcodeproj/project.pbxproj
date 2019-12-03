@@ -28,13 +28,21 @@
 		FC1C2A7B236D4DB20054AD8B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C2A7A236D4DB20054AD8B /* Test.swift */; };
 		FC1C2A7F236D6D920054AD8B /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C2A7E236D6D920054AD8B /* JSONManager.swift */; };
 		FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */; };
+		FC580444237FBC98008739EA /* CardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC580443237FBC98008739EA /* CardVC.swift */; };
+		FC580448237FCB13008739EA /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC580447237FCB13008739EA /* TestVC.swift */; };
+		FC58044C237FFDC5008739EA /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC58044B237FFDC5008739EA /* Presets.swift */; };
 		FC674857237EB94400B776A7 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674856237EB94400B776A7 /* AnswerButton.swift */; };
 		FC67485A237EBB4F00B776A7 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674859237EBB4F00B776A7 /* SpeechSynthesizer.swift */; };
 		FC67485C237EE22800B776A7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67485B237EE22800B776A7 /* RatingView.swift */; };
+		FC79A468238504B900E72215 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A467238504B900E72215 /* UserData.swift */; };
+		FC79A46A2385095300E72215 /* WebQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A4692385095300E72215 /* WebQueryManager.swift */; };
 		FC9443C82373D8FA00C2C25A /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443C72373D8FA00C2C25A /* LessonViewController.swift */; };
 		FC9443CA2374010B00C2C25A /* SingleLessonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443C92374010B00C2C25A /* SingleLessonVC.swift */; };
 		FC9443CC237402D600C2C25A /* PracticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443CB237402D600C2C25A /* PracticeVC.swift */; };
 		FC9443CE23746A3900C2C25A /* InitialData.json in Resources */ = {isa = PBXBuildFile; fileRef = FC9443CD23746A3900C2C25A /* InitialData.json */; };
+		FCC3F6F7238D61E000C8D968 /* TestListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3F6F6238D61E000C8D968 /* TestListVC.swift */; };
+		FCC3F6F9238D739800C8D968 /* TestResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3F6F8238D739800C8D968 /* TestResultVC.swift */; };
+		FCD0DB99238424C900FCB5D9 /* EditableTextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0DB97238424C900FCB5D9 /* EditableTextAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,13 +71,21 @@
 		FC1C2A7A236D4DB20054AD8B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		FC1C2A7E236D6D920054AD8B /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		FC580443237FBC98008739EA /* CardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardVC.swift; sourceTree = "<group>"; };
+		FC580447237FCB13008739EA /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
+		FC58044B237FFDC5008739EA /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		FC674856237EB94400B776A7 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		FC674859237EBB4F00B776A7 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		FC67485B237EE22800B776A7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		FC79A467238504B900E72215 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		FC79A4692385095300E72215 /* WebQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebQueryManager.swift; sourceTree = "<group>"; };
 		FC9443C72373D8FA00C2C25A /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 		FC9443C92374010B00C2C25A /* SingleLessonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonVC.swift; sourceTree = "<group>"; };
 		FC9443CB237402D600C2C25A /* PracticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeVC.swift; sourceTree = "<group>"; };
 		FC9443CD23746A3900C2C25A /* InitialData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InitialData.json; path = ../../../../Documents/InitialData.json; sourceTree = "<group>"; };
+		FCC3F6F6238D61E000C8D968 /* TestListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListVC.swift; sourceTree = "<group>"; };
+		FCC3F6F8238D739800C8D968 /* TestResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultVC.swift; sourceTree = "<group>"; };
+		FCD0DB97238424C900FCB5D9 /* EditableTextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +147,7 @@
 				FC1C2A7C236D6D6E0054AD8B /* Managers */,
 				C4A0BC80235AE8AF000EA12F /* Controllers */,
 				C4A0BC72235AE127000EA12F /* Main.storyboard */,
+				FC58044D237FFDCE008739EA /* Global */,
 				C4A0BC75235AE129000EA12F /* Assets.xcassets */,
 				C4A0BC77235AE129000EA12F /* LaunchScreen.storyboard */,
 				C4A0BC7A235AE129000EA12F /* Info.plist */,
@@ -143,9 +160,13 @@
 			isa = PBXGroup;
 			children = (
 				C4A0BC70235AE127000EA12F /* LevelController.swift */,
+				FC580447237FCB13008739EA /* TestVC.swift */,
 				FC9443CB237402D600C2C25A /* PracticeVC.swift */,
+				FC580443237FBC98008739EA /* CardVC.swift */,
 				FC9443C92374010B00C2C25A /* SingleLessonVC.swift */,
 				FC9443C72373D8FA00C2C25A /* LessonViewController.swift */,
+				FCC3F6F6238D61E000C8D968 /* TestListVC.swift */,
+				FCC3F6F8238D739800C8D968 /* TestResultVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -155,7 +176,6 @@
 			children = (
 				C4A0BC82235AE945000EA12F /* Profile.swift */,
 				FC1C2A7A236D4DB20054AD8B /* Test.swift */,
-				C4A0BCA1235B4995000EA12F /* DataPopulator.swift */,
 				C4A0BC9F235B42CC000EA12F /* Cards */,
 				C4A0BCA0235B42E8000EA12F /* Collections */,
 				C4A0BC9D235B1F89000EA12F /* Level.swift */,
@@ -177,6 +197,7 @@
 			children = (
 				C4A0BC8F235AF904000EA12F /* AlertManager.swift */,
 				C4A0BC92235AF9EB000EA12F /* CustomAlert.swift */,
+				FCD0DB97238424C900FCB5D9 /* EditableTextAlert.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -210,11 +231,22 @@
 		FC1C2A7C236D6D6E0054AD8B /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C4A0BCA1235B4995000EA12F /* DataPopulator.swift */,
+				FC79A4692385095300E72215 /* WebQueryManager.swift */,
 				FC1C2A7E236D6D920054AD8B /* JSONManager.swift */,
 				FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */,
 				FC674859237EBB4F00B776A7 /* SpeechSynthesizer.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		FC58044D237FFDCE008739EA /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				FC58044B237FFDC5008739EA /* Presets.swift */,
+				FC79A467238504B900E72215 /* UserData.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		FC674858237EB95500B776A7 /* Views */ = {
@@ -344,11 +376,15 @@
 			files = (
 				FC9443CC237402D600C2C25A /* PracticeVC.swift in Sources */,
 				C4A0BC71235AE127000EA12F /* LevelController.swift in Sources */,
+				FC79A468238504B900E72215 /* UserData.swift in Sources */,
+				FCC3F6F9238D739800C8D968 /* TestResultVC.swift in Sources */,
 				C4A0BC98235AFEB0000EA12F /* Colors.swift in Sources */,
 				C4A0BC90235AF904000EA12F /* AlertManager.swift in Sources */,
 				FC67485A237EBB4F00B776A7 /* SpeechSynthesizer.swift in Sources */,
+				FC580448237FCB13008739EA /* TestVC.swift in Sources */,
 				C4A0BC9E235B1F89000EA12F /* Level.swift in Sources */,
 				FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */,
+				FC58044C237FFDC5008739EA /* Presets.swift in Sources */,
 				FC67485C237EE22800B776A7 /* RatingView.swift in Sources */,
 				FC9443CA2374010B00C2C25A /* SingleLessonVC.swift in Sources */,
 				FC1C2A7B236D4DB20054AD8B /* Test.swift in Sources */,
@@ -356,15 +392,19 @@
 				FC1C2A7F236D6D920054AD8B /* JSONManager.swift in Sources */,
 				C4A0BC8E235AF899000EA12F /* Extensions.swift in Sources */,
 				FC674857237EB94400B776A7 /* AnswerButton.swift in Sources */,
+				FC79A46A2385095300E72215 /* WebQueryManager.swift in Sources */,
 				C4A0BC87235AEA62000EA12F /* Card.swift in Sources */,
 				C4A0BC83235AE945000EA12F /* Profile.swift in Sources */,
 				C4A0BC9C235B195A000EA12F /* Lesson.swift in Sources */,
 				C4A0BC8B235AF3B4000EA12F /* DataManager.swift in Sources */,
 				C4A0BC96235AFA67000EA12F /* Fonts.swift in Sources */,
 				C4A0BC9A235B0599000EA12F /* Collection.swift in Sources */,
+				FCC3F6F7238D61E000C8D968 /* TestListVC.swift in Sources */,
 				C4A0BC6F235AE127000EA12F /* AppDelegate.swift in Sources */,
 				C4A0BCA2235B4995000EA12F /* DataPopulator.swift in Sources */,
 				C4A0BC93235AF9EB000EA12F /* CustomAlert.swift in Sources */,
+				FC580444237FBC98008739EA /* CardVC.swift in Sources */,
+				FCD0DB99238424C900FCB5D9 /* EditableTextAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

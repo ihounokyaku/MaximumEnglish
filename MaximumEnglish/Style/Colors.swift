@@ -71,7 +71,10 @@ extension UIColor {
     static var SelectorWhite:UIColor {
         return UIColor.OffWhitePrimary(alpha:0.4)
     }
-      
+    
+    static var PassColor:UIColor { return UIColor.green }
+    
+    static var FailColor:UIColor { return UIColor.red }
     
 }
 

@@ -16,6 +16,7 @@ enum AnswerButtonState:String, CaseIterable {
     case speaking = "Stop"
     case processing = "Processing"
     case tryAgain = "Try Again"
+    case finish = "Finish"
     
 }
 

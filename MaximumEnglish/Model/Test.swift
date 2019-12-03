@@ -19,7 +19,7 @@ class Test:Object {
     
     //MARK: - ================ STORED VARIABLES ================
 
-    @objc dynamic private var score:Int = 0
+    @objc dynamic var score:Int = 0
     
     @objc dynamic var dateStarted:Date = Date()
     
@@ -37,6 +37,20 @@ class Test:Object {
     
     var answersCorrect = List<Bool>()
     
+    
+    //MARK: - =============== COMPUTED VARS ===============
+    
+    var scoreString:String { return "\(self.score)/\(self.cards.count)" }
+    
+    var timeUsed:String {
+        
+        guard let date = self.dateFinished else {return ""}
+        
+        let interval = date.timeIntervalSince(self.dateStarted)
+       
+        return interval.toString()
+ 
+    }
     
     //MARK: - ================== INITIALIZERS ==================
     
@@ -64,6 +78,7 @@ class Test:Object {
     func finish() {
         
         self.passed = Double(self.score) / Double(self.cards.count) >= self.passThresh
+        self.dateFinished = Date()
         
         do {
             
@@ -74,6 +89,8 @@ class Test:Object {
             AlertManager.PresentErrorAlert(withTitle: "Error Saving Test!", message: error.localizedDescription)
             
         }
+        
+        if self.passed { self.lesson?.completed = true }
         
     }
     

@@ -54,6 +54,8 @@ class Collection:Object {
     
     func addNewCard(ofType type:CardType, question:String, answer:String, notes:String) {
         
+        guard self.cards.filter("question == %@", question).count == 0 else { return }
+        
         guard let card = DataManager.NewCard(ofType: type, question: question, answer: answer, notes:notes) else { return }
         
         DataManager.Write { self.cards.append(card) }

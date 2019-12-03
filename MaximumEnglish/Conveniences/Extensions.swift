@@ -27,6 +27,23 @@ extension UIWindow {
     }
 }
 
+extension UIApplication {
+    
+    static func topViewController()-> UIViewController? {
+        
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+
+            return topController
+        }
+        
+        return nil
+    }
+    
+}
+
 //MARK - ======DEVICE TYPE=======
 extension UIDevice {
     var iPhoneX: Bool {
@@ -93,6 +110,47 @@ extension String {
     
     func lettersOnly()->String {
         return self.lowercased().trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: .punctuationCharacters)
+        
+    }
+    
+}
+
+extension Date {
+    
+    enum Format:String {
+        
+        case yearMonthDay = "yyyy-MM-dd"
+        case yearMonthDayHourMin = "yyyy-MM-dd HH:mm"
+        case hourMinuteSecond = "HH:mm:ss"
+        
+    }
+    
+    func toString(format:Date.Format)-> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat =  format.rawValue
+        return formatter.string(from: self)
+    }
+    
+}
+
+extension TimeInterval {
+    
+    func toString()-> String {
+        let interval = Int(self)
+        let seconds = interval % 60
+        let minutes = (interval / 60) % 60
+        let hours = (interval / 3600)
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+}
+
+extension UILabel {
+    
+    func colorPassFail(pass:Bool, passText:String? = nil, failText:String? = nil) {
+        if let p = passText, let f = failText { self.text = pass ? p : f }
+       
+        self.textColor = pass ? UIColor.PassColor : UIColor.FailColor
         
     }
     

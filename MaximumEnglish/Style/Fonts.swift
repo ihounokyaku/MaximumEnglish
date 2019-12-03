@@ -25,23 +25,23 @@ extension UIFont {
     }
     
     static var PrimaryRegular:UIFont{
-        return UIFont(name: "Nunito-Regular", size: 12)!
+        return UIFont(name: "Nunito-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12)
     }
     
     static var PrimaryBold:UIFont{
-        return UIFont(name: "Nunito-Bold", size: 12)!
+        return UIFont(name: "Nunito-Bold", size: 12) ?? UIFont.systemFont(ofSize: 12)
     }
     
     static var PrimaryItalic:UIFont{
-        return UIFont(name: "Nunito-Italic", size: 12)!
+        return UIFont(name: "Nunito-Italic", size: 12) ?? UIFont.systemFont(ofSize: 12)
     }
     
     static var PrimarySemiBold:UIFont{
-        return UIFont(name: "Nunito-SemiBold", size: 12)!
+        return UIFont(name: "Nunito-SemiBold", size: 12) ?? UIFont.systemFont(ofSize: 12)
     }
     
     static var GothicSemiBold:UIFont{
-        return UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12) ?? UIFont(name: "Nunito-SemiBold", size: 12)!
+        return UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12) ?? UIFont(name: "Nunito-SemiBold", size: 12) ?? UIFont.systemFont(ofSize: 12)
     }
     
     static var AlertTitleFont:UIFont {return UIFont.PrimaryBold.withSize(18)}

@@ -28,8 +28,14 @@ class SingleLessonVC: UIViewController {
 
    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? PracticeVC {
+        if let vc = segue.destination as? CardVC {
+            
             vc.lesson = self.lesson
+            
+        } else if let vc = segue.destination as? TestListVC {
+            
+            vc.lesson = self.lesson
+            
         }
     }
     

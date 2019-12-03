@@ -48,6 +48,14 @@ class Lesson:Collection {
         DataManager.delete(object: self)
         
     }
+    
+    func createTest()->Test {
+        
+        let cards = List<Card>()
+        cards.append(objectsIn: self.cards.shuffled().prefix(Presets.NumTestQuestions))
+        return Test(cards: cards, lesson: self, passThresh: Presets.PassThresh)
+        
+    }
 }
 
 

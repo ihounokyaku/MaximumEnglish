@@ -18,6 +18,7 @@ class CustomAlert: UIAlertController {
         var ms = ""
         var ti = ""
         
+        
         if let message = self.message {
             ms = message
         }

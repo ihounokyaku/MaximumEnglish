@@ -59,6 +59,10 @@ class SpeechRecognizer: NSObject {
     func finishSpeaking() {
         self.speaking = false
         guard let rec = SFSpeechRecognizer(), rec.isAvailable else {
+            self.recognitionTask = nil
+            self.audioEngine.stop()
+            self.audioEngine.inputNode.removeTap(onBus: 0)
+            self.request.endAudio()
             self.delegate?.speechRecognitionError(error: "Recognizer not available")
             return
         }
@@ -80,7 +84,10 @@ class SpeechRecognizer: NSObject {
                 
             } else {
                 
-                self.delegate?.speechRecognitionError(error: "ERROROROROR" + "\(error?.localizedDescription)" ?? "No speech results")
+                self.recognitionTask?.finish()
+                self.recognitionTask = nil
+                
+                self.delegate?.speechRecognitionError(error: error?.localizedDescription ?? "No speech results")
                 
             }
             

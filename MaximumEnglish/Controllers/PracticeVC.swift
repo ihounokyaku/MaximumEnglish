@@ -10,46 +10,23 @@ import UIKit
 import RealmSwift
 import Speech
 
-enum AnserType:String {
-    
-    case correct = "Correct!"
-    case incorrect = "Wrong!"
-    case pass = "Pass"
-}
 
-class PracticeVC: UIViewController {
-
+class PracticeVC: CardVC {
     
-    //MARK: - =============== IBOUTLETS ===============
+    //MARK: - =============== INFO OUTLETS ===============
+    @IBOutlet weak var infoView: UIView!
+    @IBOutlet weak var infoButton: UIButton!
     
-    
-    //MARK: - ===  LABELS  ===
-    @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var answerLabel: UILabel!
-    @IBOutlet weak var resultLabel: UILabel!
-    
-    
-    //MARK: - ===  BUTTONS  ===
-    @IBOutlet weak var speakButton: AnswerButton!
-    @IBOutlet weak var nextButton: UIButton!
-    
-    @IBOutlet weak var ratingView: RatingView!
-    
-    
-    //MARK: - =============== VARS ===============
-    var lesson:Lesson!
-    
-    var currentCard:Card?
-    var speechRecognizer:SpeechRecognizer!
-    var speechSynthesizer:SpeechSynthesizer!
-    
-    var back = false {
-        didSet { self.toggleButtons() }
-    }
+    //MARK: - ===  Labels  ===
+    @IBOutlet weak var timesSeenLabel: UILabel!
+    @IBOutlet weak var timesCorrectLabel: UILabel!
+    @IBOutlet weak var timesIncorrectLabel: UILabel!
+    @IBOutlet weak var intervalLabel: UILabel!
+    @IBOutlet weak var notesLabel: UITextView!
     
     var orderedCards:Results<Card> {
         
-        return self.lesson.cards.sorted(byKeyPath: "privateInterval", ascending: true)
+        return self.cardPool.sorted(byKeyPath: "privateInterval", ascending: true)
         
     }
     
@@ -60,191 +37,91 @@ class PracticeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.speechRecognizer = SpeechRecognizer(delegate: self)
-        self.speechSynthesizer = SpeechSynthesizer(delegate: self)
-        self.showNextCard()
+        self.infoView.isHidden = true
         
     }
     
-    func toggleButtons() {
-        self.answerLabel.isHidden = !self.back
-        self.nextButton.isHidden = !self.back
-        self.resultLabel.isHidden = !self.back
-        self.ratingView.isHidden = !self.back
-        self.answerLabel.isHidden = !self.back
+    override func toggleButtons() {
+        super.toggleButtons()
+        self.infoButton.isHidden = !self.back
     }
     
     
     //MARK: - =============== CARD ACTIONS ===============
     
-    
-    func showNextCard() {
-        
-        self.back = false
-        self.resultLabel.text = ""
-        
+    override func getNextCard() -> Card? {
         
         let maxInterval = Int.random(in: self.bottomInterval...self.topInterval)
         
-        let cardPool = self.lesson.cards.filter("privateInterval <= %i", maxInterval)
+        let cardPool = self.cardPool.filter("privateInterval <= %i", maxInterval)
         
         let cardIndex = Int.random(in: 0..<cardPool.count)
         
         guard cardIndex < cardPool.count else {
             print("cardIndex is \(cardIndex), cardpool count is \(cardPool.count)")
             self.currentCard = nil
-            return
-            
+            return nil
         }
         
-        
-        
-        self.currentCard = cardPool[cardIndex]
-        
-        self.questionLabel.text = self.currentCard?.question
-        
-        self.answerLabel.text = self.currentCard?.answer
-        
-        self.speakButton.currentState = .answer
+        return cardPool[cardIndex]
     }
     
     
+    //-- handle answers --//
     
-    func answered(_ answerType:AnserType) {
+    override func answered(_ answerType: AnserType) {
+        super.answered(answerType)
         
         guard let card = self.currentCard else { return }
         
-        switch answerType {
+        if answerType == .incorrect && card.interval > 0 {
             
-        case .correct:
-            self.resultLabel.text = "Correct!"
-            self.answerLabel.textColor = UIColor.green
-            self.resultLabel.textColor = UIColor.green
+            card.interval -= 1
+            
+        } else if answerType == .correct {
+            
             card.interval += 1
-            card.timesSeen += 1
-            
-        case .incorrect:
-            self.resultLabel.text = "Incorrect!"
-            self.answerLabel.textColor = UIColor.red
-            self.resultLabel.textColor = UIColor.red
-            if card.interval > 0 { card.interval -= 1 }
-            card.timesSeen += 1
-            card.timesIncorrect += 1
-            
-        case .pass:
-            break
             
         }
         
-        self.back = true
+        card.timesSeen += 1
         
-        
+        self.timesSeenLabel.text = "Times Seen: \(card.timesSeen)"
+        self.timesCorrectLabel.text = "Times Correct: \(card.timesSeen - card.timesIncorrect)"
+        self.timesIncorrectLabel.text = "Times Incorrect \(card.timesIncorrect)"
+        self.intervalLabel.text = "Interval: \(card.interval)"
+        self.notesLabel.text = card.notes
     }
     
     
-    //MARK: - =============== USER INTERACTION ===============
-    
-    @IBAction func speakPressed(_ sender: AnswerButton) {
+    override func tryPronunciationAgain() {
+ 
+        self.ratingView.currentRating = nil
+        self.speechRecognizer.getSpeech()
         
+    }
+    
+    @IBAction func infoPressed(_ sender: Any) { self.infoView.isHidden = !self.infoView.isHidden }
+    
+    @IBAction func hintPressed(_ sender: Any) {
         guard let card = self.currentCard else { return }
         
-        switch sender.currentState {
+        AlertManager.PresentEditableTextAlert(title: "Hint", message: "You may create or edit a hint for this card", textFieldText: card.hint ?? "", action: {(str) in
             
-        case .answer:
+            card.hint = str
             
-            self.speechRecognizer.getSpeech()
-            
-        case .speaking:
-            
-            sender.currentState = .processing
-            self.speechRecognizer.finishSpeaking()
-            
-        case .listen:
-            
-            self.speechSynthesizer.speak(text: card.answer)
-            sender.currentState = .listening
-            
-        case .tryAgain:
-            
-            self.ratingView.currentRating = nil
-            self.speechRecognizer.getSpeech()
-            
-        default:
-            
-            break
-            
-        }
-        
-    }
-   
-    
-    @IBAction func nextButtonPressed(_ sender: Any) {
-        self.showNextCard()
+        })
+         
     }
     
-    @IBAction func exOut(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+    override func cancelAction() { self.dismiss(animated: true, completion: nil) }
+    
+    override func playedCorrectAnswer() { self.speakButton.currentState = .tryAgain }
     
 }
 
 
-//MARK: - =============== SPEECH RECOGNITION  ===============
-extension PracticeVC:SpeechRecognizerDelegate {
-    
-    func speechResultReturned(result: SFSpeechRecognitionResult) {
-        guard let card = currentCard else {return}
-        
-        let allTranscriptions = result.transcriptions.map {$0.formattedString.lettersOnly()}
-        if let index = allTranscriptions.firstIndex(of: card.answer.lettersOnly()) {
-            
-            let confidenceRatings = result.transcriptions[index].segments.map {$0.confidence}
-            
-            let averageRating = confidenceRatings.reduce(0, +) / Float(confidenceRatings.count)
-            
-            self.ratingView.currentRating = Rating.ForPercentage(averageRating)
-            
-            for transcription in result.transcriptions {
-                print(transcription.formattedString)
-                let segments = transcription.segments
-                
-                for segment in segments {
-                    print(segment.substring)
-                    print(segment.confidence)
-                }  
-            }
-            
-            if !self.back { self.answered(.correct) }
-            
-        } else {
-            self.ratingView.currentRating = .bad
-            if !self.back { self.answered(.incorrect) }
-        }
-        
-        self.speakButton.currentState = .listen
-        
-    }
-    
-    func speechRecognitionError(error: String) {
-        print(error)
-    }
-    
-    func didBeginRecordingAudio() {
-        
-        self.speakButton.currentState = .speaking
-    }
-    
-}
 
-extension PracticeVC:SpeechSynthesizerDelegate {
-    
-    func didFinishSpeechUtterance(synthesizer: SpeechSynthesizer) {
-        
-        self.speakButton.currentState = .tryAgain
-        
-    }
-    
-}
 
 
 

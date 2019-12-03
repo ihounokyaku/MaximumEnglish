@@ -51,6 +51,12 @@ enum JSONKey {
         
     }
 }
+
+protocol JSONManagerDelegate {
+    
+    func finishedDataUpdate()
+    
+}
  
 
 class JSONManager: NSObject {
@@ -59,6 +65,7 @@ class JSONManager: NSObject {
     
     var json:JSON
     
+    var delegate:JSONManagerDelegate?
     //MARK: - =============== INIT ===============
     required init(json:JSON) {
         self.json = json
@@ -218,6 +225,9 @@ class JSONManager: NSObject {
             }
             
         }
+        
+        if let id = self.id { UserData.lastJSONID = id }
+        self.delegate?.finishedDataUpdate()
         
     }
     
