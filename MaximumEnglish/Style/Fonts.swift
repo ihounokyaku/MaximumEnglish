@@ -24,29 +24,25 @@ extension UIFont {
         return defaultSize
     }
     
-    static var PrimaryRegular:UIFont{
-        return UIFont(name: "Nunito-Regular", size: 12) ?? UIFont.systemFont(ofSize: 12)
+    static func PrimaryRegular(size:CGFloat)->UIFont{
+        return UIFont(name: "PTSans-Regular", size: size) ?? UIFont.systemFont(ofSize: size)
+    }
+    static func PrimaryBold(size:CGFloat)->UIFont{
+        return UIFont(name: "PTSans-Bold", size: size) ?? UIFont.systemFont(ofSize: size)
     }
     
-    static var PrimaryBold:UIFont{
-        return UIFont(name: "Nunito-Bold", size: 12) ?? UIFont.systemFont(ofSize: 12)
+    static func PrimaryItalic(size:CGFloat)->UIFont{
+        return UIFont(name: "PTSans-Italic", size: size) ?? UIFont.systemFont(ofSize: size)
     }
+   
     
-    static var PrimaryItalic:UIFont{
-        return UIFont(name: "Nunito-Italic", size: 12) ?? UIFont.systemFont(ofSize: 12)
-    }
+    static var AlertTitleFont:UIFont {return UIFont.PrimaryBold(size:18)}
     
-    static var PrimarySemiBold:UIFont{
-        return UIFont(name: "Nunito-SemiBold", size: 12) ?? UIFont.systemFont(ofSize: 12)
-    }
+    static var AlertMessageFont:UIFont {return UIFont.PrimaryRegular(size:16)}
     
-    static var GothicSemiBold:UIFont{
-        return UIFont(name: "AppleSDGothicNeo-SemiBold", size: 12) ?? UIFont(name: "Nunito-SemiBold", size: 12) ?? UIFont.systemFont(ofSize: 12)
-    }
+    static var TableRowTitle:UIFont {return UIFont.PrimaryRegular(size: 17)}
     
-    static var AlertTitleFont:UIFont {return UIFont.PrimaryBold.withSize(18)}
-    
-    static var AlertMessageFont:UIFont {return UIFont.PrimaryRegular.withSize(16)}
+    static var NavBarTitle:UIFont{return UIFont.PrimaryRegular(size: 17)}
     
 }
 

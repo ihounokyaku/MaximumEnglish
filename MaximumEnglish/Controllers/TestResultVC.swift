@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TestResultVC: UIViewController {
 
     //MARK: - =============== IBOUTLETS ===============
+    
+    @IBOutlet weak var cardTable: UITableView!
     
     //MARK: - ===  LABELS  ===
     
@@ -26,8 +29,13 @@ class TestResultVC: UIViewController {
     
     var test:Test?
     
+    var cards:List<Card> { return self.test?.cards ?? List<Card>()}
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.cardTable.delegate = self
+        self.cardTable.dataSource = self
         self.populateFields()
         // Do any additional setup after loading the view.
     }
@@ -46,14 +54,48 @@ class TestResultVC: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        if let vc = segue.destination as? CardViewerVC {
+            vc.card = sender as? Card
+            
+        }
     }
-    */
+    
 
+}
+
+extension TestResultVC:UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.cards.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        
+        let card = self.cards[indexPath.row]
+        if self.test?.answersCorrect.count == self.cards.count {
+            cell.textLabel?.colorPassFail(pass: self.test!.answersCorrect[indexPath.row])
+        }
+        cell.contentView.backgroundColor = UIColor.black
+        cell.layer.backgroundColor = indexPath.row % 2 == 0 ? UIColor.TableOdd.cgColor : UIColor.TableEven.cgColor
+        cell.contentView.layer.backgroundColor = UIColor.black.cgColor
+        
+        cell.textLabel?.text = "\(indexPath.row + 1).  \(card.question)"
+        
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+        self.performSegue(withIdentifier: "ToCardViewer", sender: self.cards[indexPath.row])
+    }
+
+    
+    
+    
+    
 }

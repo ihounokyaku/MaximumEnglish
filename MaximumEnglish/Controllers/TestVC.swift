@@ -10,12 +10,14 @@ import UIKit
 
 class TestVC: CardVC {
     
+    //MARK: - =============== IBACTIONS ===============
     @IBOutlet weak var questionNumberLabel: UILabel!
     
-    
+    //MARK: - =============== VARS ===============
     var test:Test!
     var interval = -1
     var finish = false
+    var delegate:testViewDelegate?
     
     //MARK: - =============== SETUP ===============
     
@@ -81,7 +83,7 @@ class TestVC: CardVC {
         
     }
     
-    override func finishPressed() { self.dismiss(animated: true, completion: nil) }
+    override func finishPressed() { self.dismiss(animated: true, completion: delegate?.returnedFromTestView) }
     
     override func cancelAction() {
         AlertManager.GetUserConfirmation(forAction: self.finishPressed, alertTitle: "Giving up so soon?", AlertMessage: "Your progress will not be saved!", confirmText: "Give up", cancelText: "Keep trying")

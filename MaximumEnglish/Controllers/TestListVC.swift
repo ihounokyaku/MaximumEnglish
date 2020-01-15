@@ -9,12 +9,15 @@
 import UIKit
 import RealmSwift
 
+protocol testViewDelegate { func returnedFromTestView() }
+
 class TestListVC: UIViewController {
     
     @IBOutlet weak var tableVIew: UITableView!
     
     var lesson:Lesson?
     var selectedTest:Test?
+    
     
     var tests:List<Test> {
         let tests = List<Test>()

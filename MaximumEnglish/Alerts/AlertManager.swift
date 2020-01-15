@@ -25,7 +25,7 @@ class AlertManager: NSObject {
         let defaultAction = UIAlertAction(title: "OK", style: .default) { (action) in
         }
         
-        defaultAction.setValue(UIColor.SecondaryDark(), forKey: "titleTextColor")
+        defaultAction.setValue(UIColor.Primary(), forKey: "titleTextColor")
         alertController.addAction(defaultAction)
         vc.present(alertController, animated: true, completion: nil)
         

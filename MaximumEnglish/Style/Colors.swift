@@ -36,45 +36,77 @@ extension UIColor {
         return color.withAlphaComponent(alpha)
     }
     
-    static func BlackBackgroundPrimary(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#252A26", alpha:alpha)
-    }
-    static func OffWhitePrimary(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#EEF2FA", alpha:alpha)
-    }
-    static func SecondaryDark(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#638278", alpha:alpha)
-    }
-    static func SecondaryLight(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#9BD5BF", alpha:alpha)
-    }
-    static func EmphasisDark(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#C1553E", alpha:alpha)
-    }
-    static func WhitePrimary(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#EFEFEF", alpha:alpha)
-    }
-    static func TextDarkPrimary(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#1D1E20", alpha:alpha)
-    }
-    static func TextLightPrimary(alpha:CGFloat = 1)-> UIColor{
-        return OffWhitePrimary(alpha:alpha)
-    }
-    static func TextEmphasis(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#C1553E", alpha:alpha)
-    }
-    static func TextEmphasisLight(alpha:CGFloat = 1)-> UIColor{
-        return HexWithAlpha(hex:"#D07163", alpha:alpha)
-    }
-   
     
-    static var SelectorWhite:UIColor {
-        return UIColor.OffWhitePrimary(alpha:0.4)
+    //MARK: - =============== MAIN PALLETE ===============
+    static func Primary(alpha:CGFloat = 1)-> UIColor{
+        return HexWithAlpha(hex:"#000080", alpha:alpha)
     }
     
-    static var PassColor:UIColor { return UIColor.green }
+    static func PrimaryLight(alpha:CGFloat = 1)-> UIColor{
+        return HexWithAlpha(hex:"#4169e1", alpha:alpha)
+    }
     
-    static var FailColor:UIColor { return UIColor.red }
+    static func PrimaryShade(alpha:CGFloat = 1)-> UIColor{
+        return HexWithAlpha(hex:"#e5e5f2", alpha:alpha)
+    }
     
+    static func Secondary(alpha:CGFloat = 1)-> UIColor{
+        return HexWithAlpha(hex:"#efef08", alpha:alpha)
+    }
+    
+    static func BlackPrimary(alpha:CGFloat = 1)-> UIColor {
+        return HexWithAlpha(hex:"#535353", alpha:alpha)
+    }
+    
+    static func LightGreyPrimary(alpha:CGFloat = 1)-> UIColor {
+        return HexWithAlpha(hex:"#a0a0a0", alpha:alpha)
+    }
+    
+    static func WhitePrimary(alpha:CGFloat = 1)-> UIColor {
+        return HexWithAlpha(hex:"#ffffff", alpha:alpha)
+    }
+
+    static func Pass(alpha:CGFloat = 1)-> UIColor {
+        return HexWithAlpha(hex:"#4169e1", alpha:alpha)
+    }
+    
+    static func Fail(alpha:CGFloat = 1)-> UIColor {
+        return HexWithAlpha(hex:"#9e0b0f", alpha:alpha)
+    }
+    
+    //MARK: - =============== COLOR BY USE ===============
+    
+    static var NavMenuBkg:UIColor {return Primary() }
+    
+    static var NavMenuBtn:UIColor {return Secondary()}
+    
+    //MARK: - ===  TEXT  ===
+    static var TextPrimary:UIColor {return BlackPrimary()}
+    
+    static var TextDisabled:UIColor {return LightGreyPrimary()}
+    
+    static var TextSecondary:UIColor {return PrimaryLight()}
+    
+    static var NavText:UIColor {return WhitePrimary()}
+    
+    static var PassText:UIColor {return Pass()}
+       
+    static var FailText:UIColor { return Fail() }
+    
+    static var ExpandButton:UIColor {return PrimaryLight()}
+    
+    static var TableEven:UIColor {return PrimaryShade()}
+    
+    static var TableOdd:UIColor{return WhitePrimary()}
+    
+    static var CardLeftTab:UIColor{return Secondary(alpha: 0.95)}
+    
+    static var CardLeftTabOutline:UIColor { return Primary() }
+    
+    static var SpeakBtnBkg:UIColor {return Primary(alpha:0.2)}
+    
+    static var SpeakBtnOutline:UIColor { return Primary() }
+    
+    static var SpeakBtnImage:UIColor { return Primary() }
 }
 

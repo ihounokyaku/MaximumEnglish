@@ -27,22 +27,32 @@
 		C4A0BCA2235B4995000EA12F /* DataPopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A0BCA1235B4995000EA12F /* DataPopulator.swift */; };
 		FC1C2A7B236D4DB20054AD8B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C2A7A236D4DB20054AD8B /* Test.swift */; };
 		FC1C2A7F236D6D920054AD8B /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C2A7E236D6D920054AD8B /* JSONManager.swift */; };
+		FC4D87CB23C38D60006B2512 /* LessonHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */; };
+		FC4D87CC23C38D60006B2512 /* LessonHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */; };
 		FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */; };
+		FC54576723CB027300DFC718 /* PlusMinus.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC54576623CB027300DFC718 /* PlusMinus.swift */; };
 		FC580444237FBC98008739EA /* CardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC580443237FBC98008739EA /* CardVC.swift */; };
 		FC580448237FCB13008739EA /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC580447237FCB13008739EA /* TestVC.swift */; };
 		FC58044C237FFDC5008739EA /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC58044B237FFDC5008739EA /* Presets.swift */; };
 		FC674857237EB94400B776A7 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674856237EB94400B776A7 /* AnswerButton.swift */; };
 		FC67485A237EBB4F00B776A7 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674859237EBB4F00B776A7 /* SpeechSynthesizer.swift */; };
 		FC67485C237EE22800B776A7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67485B237EE22800B776A7 /* RatingView.swift */; };
+		FC75816923CE0A5200DF32F9 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC75816823CE0A5200DF32F9 /* TabView.swift */; };
 		FC79A468238504B900E72215 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A467238504B900E72215 /* UserData.swift */; };
 		FC79A46A2385095300E72215 /* WebQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A4692385095300E72215 /* WebQueryManager.swift */; };
 		FC9443C82373D8FA00C2C25A /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443C72373D8FA00C2C25A /* LessonViewController.swift */; };
 		FC9443CA2374010B00C2C25A /* SingleLessonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443C92374010B00C2C25A /* SingleLessonVC.swift */; };
 		FC9443CC237402D600C2C25A /* PracticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443CB237402D600C2C25A /* PracticeVC.swift */; };
 		FC9443CE23746A3900C2C25A /* InitialData.json in Resources */ = {isa = PBXBuildFile; fileRef = FC9443CD23746A3900C2C25A /* InitialData.json */; };
+		FCA7404E23A7D56600C6DBA3 /* CardViewerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA7404D23A7D56600C6DBA3 /* CardViewerVC.swift */; };
 		FCC3F6F7238D61E000C8D968 /* TestListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3F6F6238D61E000C8D968 /* TestListVC.swift */; };
 		FCC3F6F9238D739800C8D968 /* TestResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC3F6F8238D739800C8D968 /* TestResultVC.swift */; };
 		FCD0DB99238424C900FCB5D9 /* EditableTextAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0DB97238424C900FCB5D9 /* EditableTextAlert.swift */; };
+		FCD159EF23CB4667009CB4D2 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD159EE23CB4667009CB4D2 /* Images.swift */; };
+		FCD159F123CB5B05009CB4D2 /* Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD159F023CB5B05009CB4D2 /* Measurements.swift */; };
+		FCD159F423CB6034009CB4D2 /* PTSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD159F223CB5EFA009CB4D2 /* PTSans-Regular.ttf */; };
+		FCD159F723CB60E2009CB4D2 /* PTSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD159F523CB60E1009CB4D2 /* PTSans-Bold.ttf */; };
+		FCD159F823CB60E2009CB4D2 /* PTSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD159F623CB60E1009CB4D2 /* PTSans-Italic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,22 +80,32 @@
 		E7F40FB32294D905F45E786E /* Pods_MaximumEnglish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaximumEnglish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C2A7A236D4DB20054AD8B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		FC1C2A7E236D6D920054AD8B /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
+		FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonHeaderCell.swift; sourceTree = "<group>"; };
+		FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonHeaderCell.xib; sourceTree = "<group>"; };
 		FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		FC54576623CB027300DFC718 /* PlusMinus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusMinus.swift; sourceTree = "<group>"; };
 		FC580443237FBC98008739EA /* CardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardVC.swift; sourceTree = "<group>"; };
 		FC580447237FCB13008739EA /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		FC58044B237FFDC5008739EA /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		FC674856237EB94400B776A7 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		FC674859237EBB4F00B776A7 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		FC67485B237EE22800B776A7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		FC75816823CE0A5200DF32F9 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		FC79A467238504B900E72215 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FC79A4692385095300E72215 /* WebQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebQueryManager.swift; sourceTree = "<group>"; };
 		FC9443C72373D8FA00C2C25A /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 		FC9443C92374010B00C2C25A /* SingleLessonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonVC.swift; sourceTree = "<group>"; };
 		FC9443CB237402D600C2C25A /* PracticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeVC.swift; sourceTree = "<group>"; };
 		FC9443CD23746A3900C2C25A /* InitialData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = InitialData.json; path = ../../../../Documents/InitialData.json; sourceTree = "<group>"; };
+		FCA7404D23A7D56600C6DBA3 /* CardViewerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewerVC.swift; sourceTree = "<group>"; };
 		FCC3F6F6238D61E000C8D968 /* TestListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestListVC.swift; sourceTree = "<group>"; };
 		FCC3F6F8238D739800C8D968 /* TestResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultVC.swift; sourceTree = "<group>"; };
 		FCD0DB97238424C900FCB5D9 /* EditableTextAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextAlert.swift; sourceTree = "<group>"; };
+		FCD159EE23CB4667009CB4D2 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		FCD159F023CB5B05009CB4D2 /* Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurements.swift; sourceTree = "<group>"; };
+		FCD159F223CB5EFA009CB4D2 /* PTSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Regular.ttf"; sourceTree = "<group>"; };
+		FCD159F523CB60E1009CB4D2 /* PTSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Bold.ttf"; sourceTree = "<group>"; };
+		FCD159F623CB60E1009CB4D2 /* PTSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Italic.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,15 +158,16 @@
 		C4A0BC6D235AE127000EA12F /* MaximumEnglish */ = {
 			isa = PBXGroup;
 			children = (
+				C4A0BC6E235AE127000EA12F /* AppDelegate.swift */,
 				C4A0BC94235AFA08000EA12F /* Style */,
 				FC674858237EB95500B776A7 /* Views */,
 				C4A0BC91235AF9AA000EA12F /* Alerts */,
 				C4A0BC8C235AF889000EA12F /* Conveniences */,
 				C4A0BC81235AE92E000EA12F /* Model */,
-				C4A0BC6E235AE127000EA12F /* AppDelegate.swift */,
 				FC1C2A7C236D6D6E0054AD8B /* Managers */,
 				C4A0BC80235AE8AF000EA12F /* Controllers */,
 				C4A0BC72235AE127000EA12F /* Main.storyboard */,
+				FCD159F323CB5F0C009CB4D2 /* Fonts */,
 				FC58044D237FFDCE008739EA /* Global */,
 				C4A0BC75235AE129000EA12F /* Assets.xcassets */,
 				C4A0BC77235AE129000EA12F /* LaunchScreen.storyboard */,
@@ -167,6 +188,7 @@
 				FC9443C72373D8FA00C2C25A /* LessonViewController.swift */,
 				FCC3F6F6238D61E000C8D968 /* TestListVC.swift */,
 				FCC3F6F8238D739800C8D968 /* TestResultVC.swift */,
+				FCA7404D23A7D56600C6DBA3 /* CardViewerVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -207,6 +229,8 @@
 			children = (
 				C4A0BC95235AFA3A000EA12F /* Fonts.swift */,
 				C4A0BC97235AFEB0000EA12F /* Colors.swift */,
+				FCD159EE23CB4667009CB4D2 /* Images.swift */,
+				FCD159F023CB5B05009CB4D2 /* Measurements.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -252,10 +276,24 @@
 		FC674858237EB95500B776A7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FC75816823CE0A5200DF32F9 /* TabView.swift */,
+				FC54576623CB027300DFC718 /* PlusMinus.swift */,
 				FC674856237EB94400B776A7 /* AnswerButton.swift */,
 				FC67485B237EE22800B776A7 /* RatingView.swift */,
+				FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */,
+				FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FCD159F323CB5F0C009CB4D2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				FCD159F523CB60E1009CB4D2 /* PTSans-Bold.ttf */,
+				FCD159F623CB60E1009CB4D2 /* PTSans-Italic.ttf */,
+				FCD159F223CB5EFA009CB4D2 /* PTSans-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,10 +356,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD159F423CB6034009CB4D2 /* PTSans-Regular.ttf in Resources */,
+				FCD159F823CB60E2009CB4D2 /* PTSans-Italic.ttf in Resources */,
 				FC9443CE23746A3900C2C25A /* InitialData.json in Resources */,
 				C4A0BC79235AE129000EA12F /* LaunchScreen.storyboard in Resources */,
 				C4A0BC76235AE129000EA12F /* Assets.xcassets in Resources */,
 				C4A0BC74235AE127000EA12F /* Main.storyboard in Resources */,
+				FC4D87CC23C38D60006B2512 /* LessonHeaderCell.xib in Resources */,
+				FCD159F723CB60E2009CB4D2 /* PTSans-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +423,7 @@
 				C4A0BC98235AFEB0000EA12F /* Colors.swift in Sources */,
 				C4A0BC90235AF904000EA12F /* AlertManager.swift in Sources */,
 				FC67485A237EBB4F00B776A7 /* SpeechSynthesizer.swift in Sources */,
+				FCD159EF23CB4667009CB4D2 /* Images.swift in Sources */,
 				FC580448237FCB13008739EA /* TestVC.swift in Sources */,
 				C4A0BC9E235B1F89000EA12F /* Level.swift in Sources */,
 				FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */,
@@ -388,22 +431,27 @@
 				FC67485C237EE22800B776A7 /* RatingView.swift in Sources */,
 				FC9443CA2374010B00C2C25A /* SingleLessonVC.swift in Sources */,
 				FC1C2A7B236D4DB20054AD8B /* Test.swift in Sources */,
+				FC54576723CB027300DFC718 /* PlusMinus.swift in Sources */,
+				FC75816923CE0A5200DF32F9 /* TabView.swift in Sources */,
 				FC9443C82373D8FA00C2C25A /* LessonViewController.swift in Sources */,
 				FC1C2A7F236D6D920054AD8B /* JSONManager.swift in Sources */,
 				C4A0BC8E235AF899000EA12F /* Extensions.swift in Sources */,
 				FC674857237EB94400B776A7 /* AnswerButton.swift in Sources */,
+				FCA7404E23A7D56600C6DBA3 /* CardViewerVC.swift in Sources */,
 				FC79A46A2385095300E72215 /* WebQueryManager.swift in Sources */,
 				C4A0BC87235AEA62000EA12F /* Card.swift in Sources */,
 				C4A0BC83235AE945000EA12F /* Profile.swift in Sources */,
 				C4A0BC9C235B195A000EA12F /* Lesson.swift in Sources */,
 				C4A0BC8B235AF3B4000EA12F /* DataManager.swift in Sources */,
 				C4A0BC96235AFA67000EA12F /* Fonts.swift in Sources */,
+				FC4D87CB23C38D60006B2512 /* LessonHeaderCell.swift in Sources */,
 				C4A0BC9A235B0599000EA12F /* Collection.swift in Sources */,
 				FCC3F6F7238D61E000C8D968 /* TestListVC.swift in Sources */,
 				C4A0BC6F235AE127000EA12F /* AppDelegate.swift in Sources */,
 				C4A0BCA2235B4995000EA12F /* DataPopulator.swift in Sources */,
 				C4A0BC93235AF9EB000EA12F /* CustomAlert.swift in Sources */,
 				FC580444237FBC98008739EA /* CardVC.swift in Sources */,
+				FCD159F123CB5B05009CB4D2 /* Measurements.swift in Sources */,
 				FCD0DB99238424C900FCB5D9 /* EditableTextAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

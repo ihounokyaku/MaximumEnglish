@@ -189,15 +189,15 @@ extension CardVC:SpeechRecognizerDelegate {
             
             self.ratingView.currentRating = Rating.ForPercentage(averageRating)
             
-//            for transcription in result.transcriptions {
-//                print(transcription.formattedString)
-//                let segments = transcription.segments
-//
-//                for segment in segments {
-//                    print(segment.substring)
-//                    print(segment.confidence)
-//                }
-//            }
+            for transcription in result.transcriptions {
+                print(transcription.formattedString)
+                let segments = transcription.segments
+
+                for segment in segments {
+                    print(segment.substring)
+                    print(segment.confidence)
+                }
+            }
             
             if !self.back { self.answered(.correct) }
             

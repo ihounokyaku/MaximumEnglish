@@ -19,10 +19,14 @@ class LevelController: UIViewController {
     
     var selectedLevel:Level?
     
+    
+    //MARK: - =============== SETUP ===============
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.styleNavBar()
         // Do any additional setup after loading the view.
     }
     
@@ -37,21 +41,42 @@ class LevelController: UIViewController {
         
     }
     
+    func styleNavBar() {
+         
+        self.navigationController?.navigationBar.barTintColor = UIColor.NavMenuBkg
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.NavBarTitle]
+        
+        self.navigationController?.navigationBar.tintColor = UIColor.NavMenuBtn
+        
+    }
+    
     func checkForUpdates() {
+        
         SVProgressHUD.show(withStatus: "Checking for updates...")
+        
         let populator = DataPopulator()
+        
         populator.delegate = self
+        
         populator.executeUpdateQuery()
         
     }
+    
+    //MARK: - =============== NAVIGATION ===============
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        
-        if let vc = segue.destination as? LessonViewController { vc.level = self.selectedLevel }
+        if let vc = segue.destination as? LessonViewController {
+
+            vc.level = self.selectedLevel }
         
     }
 
 }
+
+
+//MARK: - =============== TABLEVIEW ===============
 
 extension LevelController: UITableViewDelegate, UITableViewDataSource {
     

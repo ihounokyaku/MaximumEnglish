@@ -24,6 +24,24 @@ class PracticeVC: CardVC {
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var notesLabel: UITextView!
     
+    //MARK: - ===  VIEWS  ===
+    
+    lazy var hintView:TabView = {
+       let _view = TabView()
+        
+        let width:CGFloat = UIScreen.main.bounds.width * 0.8
+        
+        let height:CGFloat = width * 0.6
+        
+        let frame = CGRect(x: 0 - width + 40, y: self.questionLabel.frame.origin.y, width: width, height: height)
+        
+        _view.frame = frame
+        
+        _view.construct(bkgColor: UIColor.CardLeftTab, strokeColor: UIColor.CardLeftTabOutline, strokeRadius: 2, image: UIImage.HintImage)
+        
+        return _view
+    }()
+    
     var orderedCards:Results<Card> {
         
         return self.cardPool.sorted(byKeyPath: "privateInterval", ascending: true)
@@ -38,6 +56,15 @@ class PracticeVC: CardVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.infoView.isHidden = true
+        
+        self.view.clipsToBounds = true
+        self.view.addSubview(self.hintView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        
         
     }
     
@@ -121,7 +148,33 @@ class PracticeVC: CardVC {
 }
 
 
+extension CALayer {
 
+  func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+
+    let border = CALayer()
+
+    switch edge {
+    case UIRectEdge.top:
+        border.frame = CGRect(x: 0, y: 0, width: frame.width, height: thickness)
+
+    case UIRectEdge.bottom:
+        border.frame = CGRect(x:0, y: frame.height - thickness, width: frame.width, height:thickness)
+
+    case UIRectEdge.left:
+        border.frame = CGRect(x:0, y:0, width: thickness, height: frame.height)
+
+    case UIRectEdge.right:
+        border.frame = CGRect(x: frame.width - thickness, y: 0, width: thickness, height: frame.height)
+
+    default: do {}
+    }
+
+    border.backgroundColor = color.cgColor
+
+    addSublayer(border)
+ }
+}
 
 
 

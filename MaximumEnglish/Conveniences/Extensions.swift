@@ -150,7 +150,7 @@ extension UILabel {
     func colorPassFail(pass:Bool, passText:String? = nil, failText:String? = nil) {
         if let p = passText, let f = failText { self.text = pass ? p : f }
        
-        self.textColor = pass ? UIColor.PassColor : UIColor.FailColor
+        self.textColor = pass ? UIColor.PassText : UIColor.FailText
         
     }
     
