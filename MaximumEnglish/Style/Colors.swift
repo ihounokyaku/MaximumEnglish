@@ -67,11 +67,11 @@ extension UIColor {
     }
 
     static func Pass(alpha:CGFloat = 1)-> UIColor {
-        return HexWithAlpha(hex:"#4169e1", alpha:alpha)
+        return HexWithAlpha(hex:"#22ac38", alpha:alpha)
     }
     
     static func Fail(alpha:CGFloat = 1)-> UIColor {
-        return HexWithAlpha(hex:"#9e0b0f", alpha:alpha)
+        return HexWithAlpha(hex:"#c00a07", alpha:alpha)
     }
     
     //MARK: - =============== COLOR BY USE ===============
@@ -93,20 +93,39 @@ extension UIColor {
        
     static var FailText:UIColor { return Fail() }
     
+    
+    //MARK: - ===  TABLE  ===
     static var ExpandButton:UIColor {return PrimaryLight()}
     
     static var TableEven:UIColor {return PrimaryShade()}
     
     static var TableOdd:UIColor{return WhitePrimary()}
     
-    static var CardLeftTab:UIColor{return Secondary(alpha: 0.95)}
     
-    static var CardLeftTabOutline:UIColor { return Primary() }
+    //MARK: - ===  CARD  ===
+    static var CardLeftTab:UIColor{return Secondary(alpha: 0.9)}
     
-    static var SpeakBtnBkg:UIColor {return Primary(alpha:0.2)}
+    static var CardLeftTabOutline:UIColor { return PrimaryLight() }
     
-    static var SpeakBtnOutline:UIColor { return Primary() }
+    static var CardLeftTabImage:UIColor {return PrimaryLight()}
     
-    static var SpeakBtnImage:UIColor { return Primary() }
+    static var SpeakBtnBkg:UIColor {return PrimaryLight(alpha:0.2)}
+    
+    static var SpeakBtnOutline:UIColor { return PrimaryLight() }
+    
+    static var SpeakBtnImage:UIColor { return PrimaryLight() }
+    
+    static var SpeakBtnAnimation:UIColor { return Primary() }
+    
+    static var SpeakBtnProcessingAnimation:UIColor { return Secondary() }
+    
+    static var SpeakBtnProcessingAnimationStroke:UIColor { return WhitePrimary() }
+    
+    static var ShieldViewBkg:UIColor {return BlackPrimary(alpha: 0.4)}
+    
+    static var NextButtonBkg:UIColor {return PrimaryLight()}
+    
+    static var NextButtonTxt:UIColor {return WhitePrimary()}
+    
 }
 

@@ -55,7 +55,7 @@ class TestVC: CardVC {
         
         guard let card = self.currentCard else { return }
         if self.interval >= self.test.cards.count - 1 {
-            self.nextButton.setTitle("Finish", for: .normal)
+            self.nextButton.label?.text = "Finish"
         }
         self.test.markAnswer(forCard: card, correct: answerType == .correct)
         

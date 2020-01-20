@@ -17,24 +17,105 @@ enum AnserType:String {
     case pass = "Pass"
 }
 
-class CardVC: UIViewController {
+class CardVC: UIViewController, AnswerButtonDelegate {
 
     
-    //MARK: - =============== IBOUTLETS ===============
+    //MARK: - =============== VIEWS ===============
+    
+    lazy var ratingView:RatingView = {
+        let height = self.speakButton.bounds.height * 0.32
+        let width = self.view.frame.width * 0.68
+        
+       return RatingView(frame: CGRect(x: (self.view.frame.width - width) / 2, y: self.resultLabel.frame.origin.y + self.resultLabel.bounds.height + 30, width: width, height: height))
+    }()
+    
     
     
     //MARK: - ===  LABELS  ===
-    @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var answerLabel: UILabel!
-    @IBOutlet weak var resultLabel: UILabel!
+    
+    var labelX:CGFloat = 50
+    
+    var labelWidth:CGFloat {return self.view.frame.width - self.labelX * 2}
+    
+    lazy var questionLabel:UILabel = {
+        
+        let _label = UILabel()
+        
+        let height:CGFloat = 60
+        let y = self.answerLabel.frame.origin.y - height
+        
+        _label.frame = CGRect(x: self.labelX, y: y, width: self.labelWidth, height: height)
+        
+        self.setProperties(forLabel:_label, color: UIColor.TextPrimary, font: UIFont.CardQuestion)
+        
+        return _label
+    }()
+    
+    lazy var answerLabel:UILabel = {
+    
+        let _label = UILabel()
+       
+        let height:CGFloat = 40
+        let y = self.speakButton.frame.origin.y - 20 - height
+        
+        _label.frame = CGRect(x: self.labelX, y: y, width: self.labelWidth, height: height)
+        
+        self.setProperties(forLabel:_label, color: UIColor.TextSecondary, font: UIFont.CardAnswer)
+        
+        return _label
+        
+    }()
+    
+    lazy var resultLabel:UILabel = {
+        
+        let _label = UILabel()
+        
+        let height:CGFloat = 40
+        
+        let y = self.speakButton.frame.origin.y + self.speakButton.frame.height + 20
+        
+        _label.frame = CGRect(x: self.labelX, y: y, width: self.labelWidth, height: height)
+        
+        self.setProperties(forLabel:_label, color: UIColor.TextSecondary, font: UIFont.CardAnswer)
+        
+        return _label
+        
+    }()
     
     
     //MARK: - ===  BUTTONS  ===
-    @IBOutlet weak var speakButton: AnswerButton!
-    @IBOutlet weak var nextButton: UIButton!
+    lazy var speakButton:AnswerButtonView = {
+        let _view = AnswerButtonView()
+        
+        var width = self.view.frame.width * 0.45
+        var height = width
+        var x = (self.view.frame.width - width) / 2
+        var y = (self.view.frame.height - height) / 2
+        
+        _view.frame = CGRect(x: x, y: y, width: width, height: height)
+        
+        _view.delegate = self
+        
+        return _view
+    }()
     
-    @IBOutlet weak var ratingView: RatingView!
+    lazy var nextButton:IconFlatButton = {
     
+        let _view = IconFlatButton()
+    
+        let height:CGFloat = 40
+        let width = height * 3
+        
+        _view.frame = CGRect(x: (self.view.bounds.width - width) / 2, y: self.ratingView.frame.origin.y + self.ratingView.bounds.height + 20, width: width, height: height)
+        
+        _view.construct(title: "NEXT", font: UIFont.NextButton, image: UIImage.NextArrow, bkgColor: UIColor.NextButtonBkg, textColor: UIColor.NextButtonTxt, onPress: self.nextButtonPressed)
+        
+        _view.isHidden = true
+        
+        return _view
+    }() //--CONSTRUCT IMAGE
+    
+     
     
     //MARK: - =============== VARS ===============
     var lesson:Lesson?
@@ -56,6 +137,15 @@ class CardVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Add views
+        self.view.addSubview(self.speakButton)
+        self.view.addSubview(self.answerLabel)
+        self.view.addSubview(self.questionLabel)
+        self.view.addSubview(self.resultLabel)
+        self.view.addSubview(self.ratingView)
+        self.view.addSubview(self.nextButton)
+        
         self.setUp()
         self.speechRecognizer = SpeechRecognizer(delegate: self)
         self.speechSynthesizer = SpeechSynthesizer(delegate: self)
@@ -65,6 +155,18 @@ class CardVC: UIViewController {
     
     //-- For subclass setup --//
     func setUp(){}
+    
+    
+    //MARK: - ===  SET UI  ===
+    func setProperties(forLabel label:UILabel, color:UIColor, font:UIFont) {
+        
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        
+        label.font = font
+        label.textColor = color
+        
+    }
     
     func toggleButtons() {
         self.answerLabel.isHidden = !self.back
@@ -106,8 +208,6 @@ class CardVC: UIViewController {
         let correct = answerType == .correct
         
         self.resultLabel.colorPassFail(pass: correct, passText: "Correct!", failText: "Incorrect!")
-        
-        self.answerLabel.colorPassFail(pass: correct)
        
         self.back = true
 
@@ -117,8 +217,9 @@ class CardVC: UIViewController {
     //MARK: - =============== USER INTERACTION ===============
     
     //-- handle answer button answers based on current state --//
-    @IBAction func speakPressed(_ sender: AnswerButton) {
-        
+    
+    func answerButtonPressed(_ sender: AnswerButtonView) {
+        print("pressed")
         guard let card = self.currentCard else { return }
         
         switch sender.currentState {
@@ -151,14 +252,21 @@ class CardVC: UIViewController {
             break
             
         }
+        
     }
+
     
     func finishPressed() {}
     
     func tryPronunciationAgain() { }
    
     
-    @IBAction func nextButtonPressed(_ sender: Any) { self.showNextCard() }
+    func nextButtonPressed() {
+        
+        self.showNextCard()
+        
+    }
+    
     
     @IBAction func exOut(_ sender: Any) {
         self.cancelAction()

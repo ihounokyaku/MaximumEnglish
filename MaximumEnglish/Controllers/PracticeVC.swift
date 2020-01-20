@@ -16,6 +16,7 @@ class PracticeVC: CardVC {
     //MARK: - =============== INFO OUTLETS ===============
     @IBOutlet weak var infoView: UIView!
     @IBOutlet weak var infoButton: UIButton!
+
     
     //MARK: - ===  Labels  ===
     @IBOutlet weak var timesSeenLabel: UILabel!
@@ -24,23 +25,106 @@ class PracticeVC: CardVC {
     @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var notesLabel: UITextView!
     
-    //MARK: - ===  VIEWS  ===
+    
+    //MARK: - =============== VIEWS ===============
+    
+    
+    //MARK: - ===  HINTVIEW ===
     
     lazy var hintView:TabView = {
        let _view = TabView()
-        
-        let width:CGFloat = UIScreen.main.bounds.width * 0.8
+    
+        let width:CGFloat = UIScreen.main.bounds.width * 0.9
         
         let height:CGFloat = width * 0.6
         
-        let frame = CGRect(x: 0 - width + 40, y: self.questionLabel.frame.origin.y, width: width, height: height)
+        let frame = CGRect(x: 0 - width + 40, y: self.questionLabel.frame.origin.y - 40, width: width, height: height)
         
         _view.frame = frame
         
         _view.construct(bkgColor: UIColor.CardLeftTab, strokeColor: UIColor.CardLeftTabOutline, strokeRadius: 2, image: UIImage.HintImage)
         
+        _view.addBottomButtons([self.hintButtonOne, self.hintButtonTwo])
+        
+        _view.addTitleLabel(text: "Hint")
+        
+        _view.addDescriptionText(text: self.hintText)
+        
+        _view.delegate = self
+        
         return _view
     }()
+    
+    lazy var hintButtonOne:UIButton = {
+        let _button = UIButton()
+        
+        _button.setTitle("Edit", for: .normal)
+        
+        _button.addTarget(self, action: #selector(self.hintButtonOnePressed), for: .touchUpInside)
+        
+        _button.setTitleColor(UIColor.TextSecondary, for: .normal)
+        
+        return _button
+    }()
+    
+    lazy var hintButtonTwo:UIButton = {
+        let _button = UIButton()
+        
+        _button.setTitle("Save", for: .normal)
+        
+        _button.addTarget(self, action: #selector(self.hintButtonTwoPressed), for: .touchUpInside)
+        
+        _button.isEnabled = false
+        
+        _button.setTitleColor(UIColor.TextSecondary, for: .normal)
+        
+        _button.setTitleColor(UIColor.TextDisabled, for: .disabled)
+        
+        return _button
+    }()
+    
+    //MARK: - ===  NOTESVIEW  ===
+    lazy var notesView:TabView = {
+       let _view = TabView()
+    
+        let width:CGFloat = UIScreen.main.bounds.width * 0.9
+        
+        let height:CGFloat = width * 0.6
+        
+        _view.frame = CGRect(x: 0 - width + 40, y: self.questionLabel.frame.origin.y - 40 + self.hintView.tabHeight + 10, width: width, height: height)
+        
+        _view.construct(bkgColor: UIColor.CardLeftTab, strokeColor: UIColor.CardLeftTabOutline, strokeRadius: 2, image: UIImage.DescriptionImage)
+        
+        _view.addTitleLabel(text: "Description")
+        
+        _view.addDescriptionText(text: self.notesText)
+        
+        _view.delegate = self
+        
+        _view.isHidden = true
+        
+        return _view
+    }()
+    
+    
+     lazy var shieldView:UIView = {
+         
+         let blurEffect = UIBlurEffect(style: .light)
+         
+         let _view = UIVisualEffectView(effect: blurEffect)
+         
+         _view.frame = self.view.bounds
+         
+         _view.isHidden = true
+         
+         _view.alpha = 0
+     
+         return _view
+     }()
+    
+    
+    
+    //MARK: - =============== VARS ===============
     
     var orderedCards:Results<Card> {
         
@@ -52,13 +136,30 @@ class PracticeVC: CardVC {
     
     var bottomInterval:Int { self.orderedCards.first?.interval ?? 0}
     
+    var hintText:String {
+        return self.currentCard?.hint ?? "Tap \"Edit\" to add a custom hint for this card."
+    }
+    
+    var notesText:String {
+        
+        if self.currentCard?.notes == nil || self.currentCard?.notes == "" {
+            return "No description available."
+        }
+        
+        return self.currentCard!.notes
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.infoView.isHidden = true
-        
+        self.speakButton.delegate = self
         self.view.clipsToBounds = true
+        
+        
+        self.view.addSubview(self.shieldView)
+        self.view.addSubview(self.notesView)
         self.view.addSubview(self.hintView)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -71,6 +172,7 @@ class PracticeVC: CardVC {
     override func toggleButtons() {
         super.toggleButtons()
         self.infoButton.isHidden = !self.back
+        self.notesView.isHidden = !self.back
     }
     
     
@@ -91,6 +193,12 @@ class PracticeVC: CardVC {
         }
         
         return cardPool[cardIndex]
+    }
+    
+    override func showNextCard() {
+        super.showNextCard()
+        
+        self.hintView.descriptionText?.text = self.hintText
     }
     
     
@@ -130,21 +238,52 @@ class PracticeVC: CardVC {
     
     @IBAction func infoPressed(_ sender: Any) { self.infoView.isHidden = !self.infoView.isHidden }
     
-    @IBAction func hintPressed(_ sender: Any) {
-        guard let card = self.currentCard else { return }
-        
-        AlertManager.PresentEditableTextAlert(title: "Hint", message: "You may create or edit a hint for this card", textFieldText: card.hint ?? "", action: {(str) in
-            
-            card.hint = str
-            
-        })
-         
-    }
+    
     
     override func cancelAction() { self.dismiss(animated: true, completion: nil) }
     
     override func playedCorrectAnswer() { self.speakButton.currentState = .tryAgain }
     
+    
+    //MARK: - =============== HINT BUTTONS ===============
+    
+
+    
+    @objc func hintButtonOnePressed(_ sender:UIButton) {
+        guard let desc = self.hintView.descriptionText else {return}
+        if !desc.isEditable {
+            
+            desc.isEditable = true
+            desc.becomeFirstResponder()
+            desc.selectAll(nil)
+            sender.setTitle("Cancel", for: .normal)
+            self.hintButtonTwo.isEnabled = true
+            
+        } else {
+            
+            self.endHintEdit()
+            
+        }
+        
+    }
+    
+    @objc func hintButtonTwoPressed(_ sender:UIButton) {
+        guard let desc = self.hintView.descriptionText, let card = self.currentCard else {return}
+    
+        card.hint = desc.text
+        
+        self.endHintEdit()
+        
+    }
+    
+    func endHintEdit() {
+        guard let desc = self.hintView.descriptionText else {return}
+        desc.text = self.hintText
+        self.hintButtonOne.setTitle("Edit", for: .normal)
+        desc.isEditable = false
+        self.hintButtonTwo.isEnabled = false
+    }
+
 }
 
 
@@ -174,6 +313,31 @@ extension CALayer {
 
     addSublayer(border)
  }
+}
+
+extension PracticeVC:TabViewDelegate {
+    
+    
+    func tabViewWillOpen(_ tabView: TabView) {
+        
+        UIView.animate(withDuration: self.hintView.animationDuration) {
+            self.shieldView.isHidden = false
+            self.shieldView.alpha = 0.7
+        }
+    }
+    
+    func tabViewWillClose(_ tabView: TabView) {
+        
+        self.endHintEdit()
+        
+        UIView.animate(withDuration: self.hintView.animationDuration, animations: {
+            self.shieldView.alpha = 0
+        }) { (complete) in
+            self.shieldView.isHidden = true
+        }
+    }
+    
+    
 }
 
 

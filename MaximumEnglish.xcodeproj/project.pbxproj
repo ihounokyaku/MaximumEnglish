@@ -27,6 +27,7 @@
 		C4A0BCA2235B4995000EA12F /* DataPopulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A0BCA1235B4995000EA12F /* DataPopulator.swift */; };
 		FC1C2A7B236D4DB20054AD8B /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C2A7A236D4DB20054AD8B /* Test.swift */; };
 		FC1C2A7F236D6D920054AD8B /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1C2A7E236D6D920054AD8B /* JSONManager.swift */; };
+		FC2AC35623D5F41F00433639 /* IconFlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AC35523D5F41F00433639 /* IconFlatButton.swift */; };
 		FC4D87CB23C38D60006B2512 /* LessonHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */; };
 		FC4D87CC23C38D60006B2512 /* LessonHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */; };
 		FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */; };
@@ -34,10 +35,10 @@
 		FC580444237FBC98008739EA /* CardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC580443237FBC98008739EA /* CardVC.swift */; };
 		FC580448237FCB13008739EA /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC580447237FCB13008739EA /* TestVC.swift */; };
 		FC58044C237FFDC5008739EA /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC58044B237FFDC5008739EA /* Presets.swift */; };
-		FC674857237EB94400B776A7 /* AnswerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674856237EB94400B776A7 /* AnswerButton.swift */; };
 		FC67485A237EBB4F00B776A7 /* SpeechSynthesizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC674859237EBB4F00B776A7 /* SpeechSynthesizer.swift */; };
 		FC67485C237EE22800B776A7 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67485B237EE22800B776A7 /* RatingView.swift */; };
 		FC75816923CE0A5200DF32F9 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC75816823CE0A5200DF32F9 /* TabView.swift */; };
+		FC75CA5623CEFE7F00918324 /* AnswerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC75CA5523CEFE7F00918324 /* AnswerButtonView.swift */; };
 		FC79A468238504B900E72215 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A467238504B900E72215 /* UserData.swift */; };
 		FC79A46A2385095300E72215 /* WebQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A4692385095300E72215 /* WebQueryManager.swift */; };
 		FC9443C82373D8FA00C2C25A /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443C72373D8FA00C2C25A /* LessonViewController.swift */; };
@@ -53,6 +54,7 @@
 		FCD159F423CB6034009CB4D2 /* PTSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD159F223CB5EFA009CB4D2 /* PTSans-Regular.ttf */; };
 		FCD159F723CB60E2009CB4D2 /* PTSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD159F523CB60E1009CB4D2 /* PTSans-Bold.ttf */; };
 		FCD159F823CB60E2009CB4D2 /* PTSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FCD159F623CB60E1009CB4D2 /* PTSans-Italic.ttf */; };
+		FCF7B5CE23D06EF7008773F1 /* PulseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7B5CD23D06EF6008773F1 /* PulseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +82,7 @@
 		E7F40FB32294D905F45E786E /* Pods_MaximumEnglish.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MaximumEnglish.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC1C2A7A236D4DB20054AD8B /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		FC1C2A7E236D6D920054AD8B /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
+		FC2AC35523D5F41F00433639 /* IconFlatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconFlatButton.swift; sourceTree = "<group>"; };
 		FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonHeaderCell.swift; sourceTree = "<group>"; };
 		FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonHeaderCell.xib; sourceTree = "<group>"; };
 		FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
@@ -87,10 +90,10 @@
 		FC580443237FBC98008739EA /* CardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardVC.swift; sourceTree = "<group>"; };
 		FC580447237FCB13008739EA /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		FC58044B237FFDC5008739EA /* Presets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
-		FC674856237EB94400B776A7 /* AnswerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButton.swift; sourceTree = "<group>"; };
 		FC674859237EBB4F00B776A7 /* SpeechSynthesizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechSynthesizer.swift; sourceTree = "<group>"; };
 		FC67485B237EE22800B776A7 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		FC75816823CE0A5200DF32F9 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		FC75CA5523CEFE7F00918324 /* AnswerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButtonView.swift; sourceTree = "<group>"; };
 		FC79A467238504B900E72215 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FC79A4692385095300E72215 /* WebQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebQueryManager.swift; sourceTree = "<group>"; };
 		FC9443C72373D8FA00C2C25A /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +109,7 @@
 		FCD159F223CB5EFA009CB4D2 /* PTSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Regular.ttf"; sourceTree = "<group>"; };
 		FCD159F523CB60E1009CB4D2 /* PTSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Bold.ttf"; sourceTree = "<group>"; };
 		FCD159F623CB60E1009CB4D2 /* PTSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Italic.ttf"; sourceTree = "<group>"; };
+		FCF7B5CD23D06EF6008773F1 /* PulseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,11 +281,13 @@
 			isa = PBXGroup;
 			children = (
 				FC75816823CE0A5200DF32F9 /* TabView.swift */,
+				FCF7B5CD23D06EF6008773F1 /* PulseView.swift */,
 				FC54576623CB027300DFC718 /* PlusMinus.swift */,
-				FC674856237EB94400B776A7 /* AnswerButton.swift */,
+				FC75CA5523CEFE7F00918324 /* AnswerButtonView.swift */,
 				FC67485B237EE22800B776A7 /* RatingView.swift */,
 				FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */,
 				FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */,
+				FC2AC35523D5F41F00433639 /* IconFlatButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -422,21 +428,23 @@
 				FCC3F6F9238D739800C8D968 /* TestResultVC.swift in Sources */,
 				C4A0BC98235AFEB0000EA12F /* Colors.swift in Sources */,
 				C4A0BC90235AF904000EA12F /* AlertManager.swift in Sources */,
+				FC2AC35623D5F41F00433639 /* IconFlatButton.swift in Sources */,
 				FC67485A237EBB4F00B776A7 /* SpeechSynthesizer.swift in Sources */,
 				FCD159EF23CB4667009CB4D2 /* Images.swift in Sources */,
 				FC580448237FCB13008739EA /* TestVC.swift in Sources */,
 				C4A0BC9E235B1F89000EA12F /* Level.swift in Sources */,
 				FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */,
+				FCF7B5CE23D06EF7008773F1 /* PulseView.swift in Sources */,
 				FC58044C237FFDC5008739EA /* Presets.swift in Sources */,
 				FC67485C237EE22800B776A7 /* RatingView.swift in Sources */,
 				FC9443CA2374010B00C2C25A /* SingleLessonVC.swift in Sources */,
+				FC75CA5623CEFE7F00918324 /* AnswerButtonView.swift in Sources */,
 				FC1C2A7B236D4DB20054AD8B /* Test.swift in Sources */,
 				FC54576723CB027300DFC718 /* PlusMinus.swift in Sources */,
 				FC75816923CE0A5200DF32F9 /* TabView.swift in Sources */,
 				FC9443C82373D8FA00C2C25A /* LessonViewController.swift in Sources */,
 				FC1C2A7F236D6D920054AD8B /* JSONManager.swift in Sources */,
 				C4A0BC8E235AF899000EA12F /* Extensions.swift in Sources */,
-				FC674857237EB94400B776A7 /* AnswerButton.swift in Sources */,
 				FCA7404E23A7D56600C6DBA3 /* CardViewerVC.swift in Sources */,
 				FC79A46A2385095300E72215 /* WebQueryManager.swift in Sources */,
 				C4A0BC87235AEA62000EA12F /* Card.swift in Sources */,

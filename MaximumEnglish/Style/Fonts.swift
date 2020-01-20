@@ -44,6 +44,15 @@ extension UIFont {
     
     static var NavBarTitle:UIFont{return UIFont.PrimaryRegular(size: 17)}
     
+    static var CardQuestion:UIFont{return UIFont.PrimaryRegular(size: 40)}
+    
+    static var CardAnswer:UIFont{return UIFont.PrimaryRegular(size: 28)}
+    
+    static var HintTitle:UIFont{return UIFont.PrimaryRegular(size: 28)}
+    
+    static var HintDescription:UIFont{return UIFont.PrimaryRegular(size: 17)}
+    
+    static var NextButton:UIFont{return UIFont.PrimaryRegular(size: 22)}
 }
 
 

@@ -46,7 +46,7 @@ class DataPopulator: NSObject {
 extension DataPopulator:WebQueryDelegate {
     
     func dataQueryComplete(manager: WebQueryManager, results: Data?, error: String?) {
-        print("data query complete")
+        
         guard let data = results else {
             print("no data!")
             self.delegate?.dataUpdateComplete(withError: error)
@@ -71,11 +71,11 @@ extension DataPopulator:WebQueryDelegate {
         }
         
         if jsonID != UserData.lastJSONID {
-            print("going to update")
+            
             jsonManager.updateDatabase()
             
         } else {
-            print("id is id \(jsonID)")
+           
             self.delegate?.dataUpdateComplete(withError: nil)
             
         }

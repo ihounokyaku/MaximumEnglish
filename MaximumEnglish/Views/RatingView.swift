@@ -115,9 +115,11 @@ class RatingView: UIView {
             var imageName = rating.rawValue
             
             if rating == self.currentRating {
-                
+                view.alpha = 1
                 imageName += "-fill"
                 
+            } else {
+                view.alpha = 0.5
             }
             
             imageName += ".png"

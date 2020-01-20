@@ -13,10 +13,30 @@ extension UIImage {
     
     static var Lock:UIImage { return UIImage(named: "lock")! }
     
-    static var HintImage:UIImage {return UIImage(named:"light_bulb")!}
+    static var HintImage:UIImage {return UIImage(named:"hint")!}
     
-    static func AnswerButton(for state:AnswerButtonState)->UIImage {
-        return UIImage(named: "speak_answer")!
+    static var DescriptionImage:UIImage {return UIImage(named:"note")!}
+    
+    static var NextArrow:UIImage {return UIImage(named:"chevron_right")!}
+    
+    static func AnswerButton(for state:AnswerButtonState)->UIImage? {
+        var imageName = ""
+        
+        switch state {
+        case .answer, .tryAgain, .speaking:
+            imageName = "speak_answer"
+            
+        case .listen, .listening:
+            imageName = "listen"
+            
+        default:
+            break
+        }
+        
+        return UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+        
     }
+    
+    
     
 }
