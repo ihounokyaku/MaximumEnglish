@@ -19,6 +19,10 @@ extension UIImage {
     
     static var NextArrow:UIImage {return UIImage(named:"chevron_right")!}
     
+    static var CardInfoTop:UIImage {return UIImage(named:"chevron_up")!}
+    
+    static var CardInfoBottom:UIImage {return UIImage(named:"pencil")!}
+    
     static func AnswerButton(for state:AnswerButtonState)->UIImage? {
         var imageName = ""
         

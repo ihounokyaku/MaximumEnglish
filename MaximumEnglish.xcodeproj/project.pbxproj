@@ -41,6 +41,7 @@
 		FC75CA5623CEFE7F00918324 /* AnswerButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC75CA5523CEFE7F00918324 /* AnswerButtonView.swift */; };
 		FC79A468238504B900E72215 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A467238504B900E72215 /* UserData.swift */; };
 		FC79A46A2385095300E72215 /* WebQueryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC79A4692385095300E72215 /* WebQueryManager.swift */; };
+		FC8B3E1023D75D1500F3AE7A /* CardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8B3E0F23D75D1500F3AE7A /* CardInfoView.swift */; };
 		FC9443C82373D8FA00C2C25A /* LessonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443C72373D8FA00C2C25A /* LessonViewController.swift */; };
 		FC9443CA2374010B00C2C25A /* SingleLessonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443C92374010B00C2C25A /* SingleLessonVC.swift */; };
 		FC9443CC237402D600C2C25A /* PracticeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9443CB237402D600C2C25A /* PracticeVC.swift */; };
@@ -96,6 +97,7 @@
 		FC75CA5523CEFE7F00918324 /* AnswerButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerButtonView.swift; sourceTree = "<group>"; };
 		FC79A467238504B900E72215 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		FC79A4692385095300E72215 /* WebQueryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebQueryManager.swift; sourceTree = "<group>"; };
+		FC8B3E0F23D75D1500F3AE7A /* CardInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardInfoView.swift; sourceTree = "<group>"; };
 		FC9443C72373D8FA00C2C25A /* LessonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonViewController.swift; sourceTree = "<group>"; };
 		FC9443C92374010B00C2C25A /* SingleLessonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLessonVC.swift; sourceTree = "<group>"; };
 		FC9443CB237402D600C2C25A /* PracticeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeVC.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */,
 				FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */,
 				FC2AC35523D5F41F00433639 /* IconFlatButton.swift */,
+				FC8B3E0F23D75D1500F3AE7A /* CardInfoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */,
 				FCF7B5CE23D06EF7008773F1 /* PulseView.swift in Sources */,
 				FC58044C237FFDC5008739EA /* Presets.swift in Sources */,
+				FC8B3E1023D75D1500F3AE7A /* CardInfoView.swift in Sources */,
 				FC67485C237EE22800B776A7 /* RatingView.swift in Sources */,
 				FC9443CA2374010B00C2C25A /* SingleLessonVC.swift in Sources */,
 				FC75CA5623CEFE7F00918324 /* AnswerButtonView.swift in Sources */,

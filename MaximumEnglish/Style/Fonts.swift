@@ -53,6 +53,13 @@ extension UIFont {
     static var HintDescription:UIFont{return UIFont.PrimaryRegular(size: 17)}
     
     static var NextButton:UIFont{return UIFont.PrimaryRegular(size: 22)}
+    
+    static var CardInfoTopView:UIFont{return UIFont.PrimaryRegular(size: 15)}
+    
+    static var CardInfoCategory:UIFont{return UIFont.PrimaryRegular(size: 18)}
+    
+    static var CardInfoItem:UIFont{return UIFont.PrimaryRegular(size: 18)}
+    
 }
 
 

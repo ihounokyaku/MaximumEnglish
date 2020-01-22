@@ -127,5 +127,19 @@ extension UIColor {
     
     static var NextButtonTxt:UIColor {return WhitePrimary()}
     
+    static var ListeningPulse:UIColor {return PrimaryLight()}
+    
+    static var ThinkingPulse:UIColor {return Secondary()}
+    
+    //MARK: - ===  CARD INFO  ===
+    static var cardInfoViewBkg:UIColor {return Primary()}
+    
+    static var cardInfoViewImg:UIColor {return Secondary()}
+    
+    static var cardInfoHeaderText:UIColor {return Secondary()}
+    
+    static var cardInfoItemText:UIColor {return WhitePrimary()}
+    
+
 }
 

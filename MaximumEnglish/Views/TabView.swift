@@ -10,16 +10,16 @@ import UIKit
 
 protocol TabViewDelegate {
     
-    func tabViewWillOpen(_ tabView:TabView)
+    func tabViewWillOpen(_ tabView:UIView)
     
-    func tabViewWillClose(_ tabView:TabView)
+    func tabViewWillClose(_ tabView:UIView)
 }
 
 extension TabViewDelegate {
     
-    func tabViewWillOpen(_ tabView:TabView){}
+    func tabViewWillOpen(_ tabView:UIView){}
     
-    func tabViewWillClose(_ tabView:TabView){}
+    func tabViewWillClose(_ tabView:UIView){}
 }
 
 @IBDesignable class TabView: UIView {
@@ -165,9 +165,9 @@ extension TabViewDelegate {
         
         self.buttonHeight = height
         
-        let width = (self.bounds.width - self.tabWidth) / CGFloat(buttons.count)
+        let width = (self.bounds.width - self.tabWidth) / CGFloat(buttons.count) + self.strokeRadius / 2
         
-        var currentX:CGFloat = 0
+        var currentX:CGFloat = 0 - strokeRadius / 2
         
         for (i, button) in buttons.enumerated() {
             
@@ -175,7 +175,7 @@ extension TabViewDelegate {
             
             _view.backgroundColor = UIColor.clear
             
-            _view.frame = CGRect(x: currentX, y: self.bounds.height - buttonHeight - self.strokeRadius / 2, width: width, height: buttonHeight)
+            _view.frame = CGRect(x: currentX, y: self.bounds.height - buttonHeight - self.strokeRadius / 2.5, width: width, height: buttonHeight)
             if i == buttons.count - 1 {
                 _view.roundCorners(corners: [.layerMaxXMaxYCorner], radius: self.bottomCornerRadius)
             }
@@ -189,7 +189,7 @@ extension TabViewDelegate {
             
             _view.addSubview(button)
             
-            currentX += width
+            currentX += width - strokeRadius / 2
             
         }
         
@@ -254,8 +254,6 @@ extension TabViewDelegate {
         self.strokeRadius = strokeRadius
         
         self.imageView.image = image?.withRenderingMode(.alwaysTemplate)
-        
-        
         
         self.backgroundColor = UIColor.clear
         

@@ -21,18 +21,18 @@ class PulseView: UIView {
     
     var pulseDuration:Double {
         
-        return self.reverse ? 2 : 4.0
+        return self.reverse ? 2 : 2
         
     }
     
     var pulseDelay:Double {
         
-        return self.reverse ? 0.6 : 1.2
+        return self.reverse ? 0.6 : 0.6
         
     }
     
     var numberPulses:Int {
-        return self.reverse ? 5 : 2
+        return self.reverse ? 5 : 5
     }
     
     var color:UIColor = UIColor.blue

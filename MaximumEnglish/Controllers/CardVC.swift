@@ -87,7 +87,7 @@ class CardVC: UIViewController, AnswerButtonDelegate {
     lazy var speakButton:AnswerButtonView = {
         let _view = AnswerButtonView()
         
-        var width = self.view.frame.width * 0.45
+        var width = self.view.frame.width * 0.40
         var height = width
         var x = (self.view.frame.width - width) / 2
         var y = (self.view.frame.height - height) / 2
@@ -210,6 +210,22 @@ class CardVC: UIViewController, AnswerButtonDelegate {
         self.resultLabel.colorPassFail(pass: correct, passText: "Correct!", failText: "Incorrect!")
        
         self.back = true
+        
+        guard let card = self.currentCard else {return}
+        
+        card.timesSeen += 1
+        
+        if !correct { card.timesIncorrect += 1 }
+        
+        if answerType == .incorrect && card.interval > 0 {
+            
+            card.interval -= 1
+            
+        } else if answerType == .correct {
+            
+            card.interval += 1
+            
+        }
 
     }
 

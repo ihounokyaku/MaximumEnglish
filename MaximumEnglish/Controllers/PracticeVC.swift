@@ -13,18 +13,6 @@ import Speech
 
 class PracticeVC: CardVC {
     
-    //MARK: - =============== INFO OUTLETS ===============
-    @IBOutlet weak var infoView: UIView!
-    @IBOutlet weak var infoButton: UIButton!
-
-    
-    //MARK: - ===  Labels  ===
-    @IBOutlet weak var timesSeenLabel: UILabel!
-    @IBOutlet weak var timesCorrectLabel: UILabel!
-    @IBOutlet weak var timesIncorrectLabel: UILabel!
-    @IBOutlet weak var intervalLabel: UILabel!
-    @IBOutlet weak var notesLabel: UITextView!
-    
     
     //MARK: - =============== VIEWS ===============
     
@@ -122,6 +110,21 @@ class PracticeVC: CardVC {
          return _view
      }()
     
+    //MARK: - ===  INFO VIEW  ===
+    
+    lazy var cardInfoView:CardInfoView = {
+        let _view = CardInfoView()
+        
+        _view.frame.size = CGSize(width: self.view.bounds.width, height: 300)
+        
+        _view.frame.origin = CGPoint(x: 0, y: self.view.bounds.height - _view.visibleClosedHeight)
+        
+        _view.delegate = self
+        
+        _view.construct()
+        
+        return _view
+    }()
     
     
     //MARK: - =============== VARS ===============
@@ -151,7 +154,6 @@ class PracticeVC: CardVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.infoView.isHidden = true
         self.speakButton.delegate = self
         self.view.clipsToBounds = true
         
@@ -159,6 +161,7 @@ class PracticeVC: CardVC {
         self.view.addSubview(self.shieldView)
         self.view.addSubview(self.notesView)
         self.view.addSubview(self.hintView)
+        self.view.addSubview(self.cardInfoView)
         
     }
     
@@ -171,7 +174,6 @@ class PracticeVC: CardVC {
     
     override func toggleButtons() {
         super.toggleButtons()
-        self.infoButton.isHidden = !self.back
         self.notesView.isHidden = !self.back
     }
     
@@ -198,6 +200,7 @@ class PracticeVC: CardVC {
     override func showNextCard() {
         super.showNextCard()
         
+        self.populateInfoView()
         self.hintView.descriptionText?.text = self.hintText
     }
     
@@ -207,25 +210,18 @@ class PracticeVC: CardVC {
     override func answered(_ answerType: AnserType) {
         super.answered(answerType)
         
-        guard let card = self.currentCard else { return }
+        self.populateInfoView()
         
-        if answerType == .incorrect && card.interval > 0 {
-            
-            card.interval -= 1
-            
-        } else if answerType == .correct {
-            
-            card.interval += 1
-            
-        }
+    }
+    
+    func populateInfoView() {
+        guard let card = self.currentCard else {return}
         
-        card.timesSeen += 1
+        self.cardInfoView.timesSeen.text = "\(card.timesSeen)"
+        self.cardInfoView.timesCorrect.text = "\(card.timesSeen - card.timesIncorrect)"
+        self.cardInfoView.timesIncorrect.text = "\(card.timesIncorrect)"
+        self.cardInfoView.interval.text = "\(card.interval)"
         
-        self.timesSeenLabel.text = "Times Seen: \(card.timesSeen)"
-        self.timesCorrectLabel.text = "Times Correct: \(card.timesSeen - card.timesIncorrect)"
-        self.timesIncorrectLabel.text = "Times Incorrect \(card.timesIncorrect)"
-        self.intervalLabel.text = "Interval: \(card.interval)"
-        self.notesLabel.text = card.notes
     }
     
     
@@ -235,9 +231,6 @@ class PracticeVC: CardVC {
         self.speechRecognizer.getSpeech()
         
     }
-    
-    @IBAction func infoPressed(_ sender: Any) { self.infoView.isHidden = !self.infoView.isHidden }
-    
     
     
     override func cancelAction() { self.dismiss(animated: true, completion: nil) }
@@ -318,7 +311,7 @@ extension CALayer {
 extension PracticeVC:TabViewDelegate {
     
     
-    func tabViewWillOpen(_ tabView: TabView) {
+    func tabViewWillOpen(_ tabView: UIView) {
         
         UIView.animate(withDuration: self.hintView.animationDuration) {
             self.shieldView.isHidden = false
@@ -326,7 +319,7 @@ extension PracticeVC:TabViewDelegate {
         }
     }
     
-    func tabViewWillClose(_ tabView: TabView) {
+    func tabViewWillClose(_ tabView: UIView) {
         
         self.endHintEdit()
         

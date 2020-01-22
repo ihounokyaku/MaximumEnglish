@@ -120,13 +120,13 @@ class AnswerButtonView: UIView {
             
             self.backgroundColor = UIColor.SpeakBtnBkg
             
-            self.animationView.animate(withColor: UIColor.Primary(), reverse: false)
+            self.animationView.animate(withColor: UIColor.ListeningPulse, reverse: false)
             
         case .processing:
             
             self.backgroundColor = UIColor.clear
             
-            self.animationView.animate(withColor: UIColor.Secondary(), reverse: true)
+            self.animationView.animate(withColor: UIColor.ThinkingPulse, reverse: true)
             
         default:
             self.backgroundColor = UIColor.SpeakBtnBkg
