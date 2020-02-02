@@ -13,7 +13,7 @@ class LevelController: UIViewController {
 
     //MARK: - =============== IBOUTLETS ===============
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: StyledTableView!
     
     var checkedForUpdates = false
     
@@ -24,8 +24,13 @@ class LevelController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        
+        self.tableView.setUp(delegate: self)
+         
+        
+        
+        self.view.addSubview(FooterView())
+        
         self.styleNavBar()
         // Do any additional setup after loading the view.
     }
@@ -85,21 +90,28 @@ extension LevelController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! StyledCell
         
         cell.textLabel?.text = LevelName.allCases[indexPath.row].rawValue
+        
+        cell.style(forRow: indexPath.row, selectable: DataManager.Levels[indexPath.row].lessons.count > 0)
         
         return cell
         
     }
     
+ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return TableRowHeight
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        guard DataManager.Levels[indexPath.row].lessons.count > 0 else { return }
         
         self.selectedLevel = DataManager.Levels[indexPath.row]
         
         self.performSegue(withIdentifier: "ShowLessons", sender: self)
     }
-
 }
 
 extension LevelController:DataPopulatorDelegate {

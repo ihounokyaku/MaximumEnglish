@@ -10,8 +10,21 @@ import UIKit
 
 class TestVC: CardVC {
     
-    //MARK: - =============== IBACTIONS ===============
-    @IBOutlet weak var questionNumberLabel: UILabel!
+    
+    //MARK: - =============== QUESTION NO ===============
+    lazy var questionNumberLabel:UILabel = {
+        let _label = UILabel()
+        
+        _label.frame = CGRect(x: 30, y: self.navBarHeight + 20, width: self.view.bounds.width - 60, height: 40)
+        
+        _label.textAlignment = .center
+        
+        _label.textColor = UIColor.QuestionNumber
+        
+        _label.font = UIFont.QuestionNumber
+        
+        return _label
+    }()
     
     //MARK: - =============== VARS ===============
     var test:Test!
@@ -27,7 +40,15 @@ class TestVC: CardVC {
     }
     
     override func setUp() {
+        
+        super.setUp()
+        
+        self.view.addSubview(self.questionNumberLabel)
+        
+        self.view.addSubview(FooterView())
+        
         guard let lesson = self.lesson else { return }
+        
         self.test = lesson.createTest()
     }
     
@@ -84,6 +105,8 @@ class TestVC: CardVC {
     }
     
     override func finishPressed() { self.dismiss(animated: true, completion: delegate?.returnedFromTestView) }
+    
+    
     
     override func cancelAction() {
         AlertManager.GetUserConfirmation(forAction: self.finishPressed, alertTitle: "Giving up so soon?", AlertMessage: "Your progress will not be saved!", confirmText: "Give up", cancelText: "Keep trying")

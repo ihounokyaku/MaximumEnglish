@@ -9,14 +9,6 @@
 import UIKit
 
 class PulseView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
     
     var pulseDuration:Double {
@@ -127,19 +119,7 @@ class PulseView: UIView {
             layer.removeFromSuperlayer()
         }
         self.animating = false
-//        UIView.animate(withDuration: 0.1, animations: {
-//            self.alpha = 0
-//        }) { (complete) in
-//
-//            self.layer.removeAllAnimations()
-//            self.animating = false
-//
-//            if startNew { self.createPulse() }
-//
-//            UIView.animate(withDuration: 0.1, animations: {
-//                self.alpha = 1
-//            }, completion: nil)
-//        }
+
     }
     
     

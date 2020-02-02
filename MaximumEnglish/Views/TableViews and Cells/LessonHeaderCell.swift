@@ -22,7 +22,7 @@ class LessonHeaderCell: UITableViewHeaderFooterView {
         
         
         
-        self.textLabel?.textColor = locked ? UIColor.TextDisabled : UIColor.TextPrimary
+        self.textLabel?.textColor = locked ? UIColor.TextDisabled : UIColor.TableCellPrimary
         for view in self.subviews {
             if let existingView = view as? UIImageView {
                 existingView.removeFromSuperview()

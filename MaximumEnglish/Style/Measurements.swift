@@ -10,3 +10,6 @@ import Foundation
 import UIKit
 
 let TableRowHeight:CGFloat = 44
+
+let BottomFrameHeight:CGFloat = 30
+

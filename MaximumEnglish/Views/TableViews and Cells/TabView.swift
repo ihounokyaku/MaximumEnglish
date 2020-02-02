@@ -337,7 +337,10 @@ extension CGFloat {
 extension UIView {
 
    func roundCorners(corners:CACornerMask, radius: CGFloat) {
+    
       self.layer.cornerRadius = radius
+    
       self.layer.maskedCorners = corners
+    
    }
 }

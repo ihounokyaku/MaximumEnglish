@@ -13,7 +13,9 @@ protocol testViewDelegate { func returnedFromTestView() }
 
 class TestListVC: UIViewController {
     
-    @IBOutlet weak var tableVIew: UITableView!
+    @IBOutlet weak var tableView: StyledTableView!
+    
+   
     
     var lesson:Lesson?
     var selectedTest:Test?
@@ -36,8 +38,12 @@ class TestListVC: UIViewController {
         
         super.viewDidLoad()
         
-        self.tableVIew.delegate = self
-        self.tableVIew.dataSource = self
+        self.view.addSubview(FooterView())
+        
+        
+        self.tableView.setUp(delegate: self)
+        
+        self.tableView.register(UINib(nibName: "TestViewCell", bundle: nil), forCellReuseIdentifier: "TestCell")
 
     }
     
@@ -67,16 +73,21 @@ extension TestListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TestCell") as! TestViewCell
         
         let test = self.tests[indexPath.row]
         
         if let dateFinished = test.dateFinished {
             
-            let text = dateFinished.toString(format: .yearMonthDayHourMin) + "    " + "\(test.score)/\(test.cards.count)"
+            let text = "Date: " + dateFinished.toString(format: .yearMonthDayHourMin) + "    Score: " + "\(test.score)/\(test.cards.count)"
             
-            cell.textLabel?.colorPassFail(pass: test.passed)
+            cell.pass = test.passed
+            
+            cell.style(forRow: indexPath.row)
+            
             cell.textLabel?.text = text
+            
+            
             
         } 
         

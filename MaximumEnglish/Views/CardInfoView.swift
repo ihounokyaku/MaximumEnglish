@@ -14,6 +14,7 @@ enum CardInfoItem:String, CaseIterable {
 }
 
 
+
 import UIKit
 
 class CardInfoView: UIView {
@@ -35,7 +36,7 @@ class CardInfoView: UIView {
     
     lazy var mainView:UIView = {
         let _view = UIView()
-    
+        
         _view.frame = CGRect(x: 0, y: self.topViewVisibileHeight, width: self.bounds.width, height: self.bounds.height - self.topViewVisibileHeight)
         
         _view.backgroundColor = UIColor.cardInfoViewBkg
@@ -55,16 +56,29 @@ class CardInfoView: UIView {
     }()
     
     var topImage:UIImageView?
-
+    
     
     //MARK: - =============== LABELS ===============
     var timesSeen = UILabel()
     var timesCorrect = UILabel()
     var timesIncorrect = UILabel()
     var interval:UILabel = UILabel()
+    var question:UILabel = UILabel()
+    var answer:UILabel = UILabel()
+    var explanation:UILabel = UILabel()
+    var explanationBox:UITextView = UITextView()
     
     //MARK: - =============== FRAME PARAMS ===============
     
+    //MARK: - ===  ALL  ===
+    
+    var horizontalMargin:CGFloat = 30
+    
+    var verticalMargin:CGFloat = BottomFrameHeight
+    
+    var visibleClosedHeight:CGFloat { return self.topViewVisibileHeight + self.verticalMargin }
+    
+    //MARK: - ===  TOPVIEW  ===
     var topViewItemMargin:CGFloat = 2
     
     var topViewTopMargin:CGFloat = 12
@@ -73,27 +87,52 @@ class CardInfoView: UIView {
     
     var topViewImageWidth:CGFloat {return self.topViewHeight / 10}
     
-    var topViewHeight:CGFloat {return self.bounds.width * 0.45}
-    
-    var horizontalMargin:CGFloat = 30
-    
-    var verticalMargin:CGFloat = 30
-    
-    var titleValueMargin:CGFloat = 10
+    var topViewHeight:CGFloat {return self.fullInfo ? 0 : self.bounds.width * 0.45}
     
     var topViewVisibileHeight:CGFloat {return self.topViewHeight / 2.8}
     
-    var labelHeight:CGFloat { return (self.mainView.bounds.height - self.verticalMargin * 2) / CGFloat(CardInfoItem.allCases.count) }
+    var titleValueMargin:CGFloat = 10
     
-    var visibleClosedHeight:CGFloat { return self.topViewVisibileHeight + self.verticalMargin }
+    
+    //MARK: - ===  HEADER  ===
+    
+    var headerRatio:CGFloat = 0.5
+    
+    var headerHeight:CGFloat {return self.fullInfo ? self.bounds.height * headerRatio : 0}
+    
+    var headerItemMargin:CGFloat = 0
+    
+    var freeHeaderSpace:CGFloat {return (self.headerHeight - self.labelHeight - self.headerItemMargin * 2) - self.headerBottomMargin - self.dividerHeight}
+    
+    var headerLabelHeight:CGFloat {return self.freeHeaderSpace * (self.headerLabelRatio / self.headerItemTotalRatio)}
+    
+    var headerTextBoxHeight:CGFloat {return self.freeHeaderSpace * (self.headerTextBoxRatio / self.headerItemTotalRatio)}
+    
+    var headerLabelRatio:CGFloat = 1
+    
+    var headerTextBoxRatio:CGFloat = 2
+    
+    var headerItemTotalRatio:CGFloat { return self.headerLabelRatio * 2 + headerTextBoxRatio }
+    
+    var dividerHeight:CGFloat = 1
+    
+    var headerBottomMargin:CGFloat = 10
+    
+    //MARK: - ===  INFO LABELS  ===
+    
+    var labelHeight:CGFloat { return (self.mainView.bounds.height - self.headerHeight - self.verticalMargin * 2) / CGFloat(CardInfoItem.allCases.count) }
+    
+    
     
     //MARK: - =============== STATE VARS ===============
     var open = false
     var animating = false
     
+    
     //MARK: - =============== OTHER VARS ===============
     var animationDuration:Double = 0.3
     var delegate:TabViewDelegate?
+    var fullInfo = false
     //MARK: - =============== SETUP ===============
     
     func construct() {
@@ -105,19 +144,65 @@ class CardInfoView: UIView {
         // -- ADD LABELS --//
         var currentLabelY = self.verticalMargin
         
+        if self.fullInfo {
+            
+            // Add Headers
+            
+            for label in [self.question, self.answer] {
+                
+                label.font = UIFont.CardInfoHeader
+                
+                label.textAlignment = .center
+                
+                label.textColor = UIColor.CardInfoHeaderText
+                
+                label.adjustsFontSizeToFitWidth = true
+                
+                label.frame = CGRect(x: self.horizontalMargin, y: currentLabelY, width: self.bounds.width - self.horizontalMargin * 2, height: self.headerLabelHeight)
+                
+                self.addSubview(label)
+                
+                currentLabelY += label.bounds.height + self.headerItemMargin
+            }
+            
+            //Add explanation title
+            
+            let explanationTitle = self.addTitleLabel(withText: "Explanation:", yValue: currentLabelY)
+            
+            currentLabelY += explanationTitle.bounds.height
+            
+            // Add explanation textbox
+            self.explanationBox.frame = CGRect(x: self.horizontalMargin, y: currentLabelY, width: self.bounds.width - self.horizontalMargin * 2, height: self.headerTextBoxHeight)
+            
+            self.explanationBox.isScrollEnabled = true
+            
+            self.explanationBox.isEditable = false
+            
+            self.explanationBox.font = UIFont.CardInfoTextBox
+            
+            self.explanationBox.textColor = UIColor.CardInfoTextBoxText
+            
+            self.explanationBox.backgroundColor = UIColor.CardInfoTextBoxBkg
+            
+            self.addSubview(self.explanationBox)
+            
+            currentLabelY += (self.explanationBox.bounds.height + self.headerBottomMargin / 2)
+            
+            //ADD DIVIDER AND MARGIN
+            
+            let divider = UIView(frame: CGRect(x: self.verticalMargin, y: currentLabelY, width: self.bounds.width - self.verticalMargin * 2, height: self.dividerHeight))
+            
+            divider.backgroundColor = UIColor.CardInfoDivider
+            
+            self.addSubview(divider)
+            
+            currentLabelY += divider.bounds.height + self.headerBottomMargin / 2
+        }
+        
+        
         for item in CardInfoItem.allCases {
             
-            let titleLabel = UILabel(frame: CGRect(x: self.horizontalMargin, y: currentLabelY, width: 0, height: self.labelHeight))
-            
-            titleLabel.text = item.rawValue
-            
-            titleLabel.font = UIFont.CardInfoCategory
-            
-            titleLabel.sizeToFit()
-            
-            titleLabel.frame.size = CGSize(width: titleLabel.frame.width, height: self.labelHeight)
-            
-            titleLabel.textColor = UIColor.cardInfoHeaderText
+            let titleLabel = self.addTitleLabel(withText: item.rawValue, yValue: currentLabelY)
             
             self.mainView.addSubview(titleLabel)
             
@@ -145,11 +230,13 @@ class CardInfoView: UIView {
         let topText = UILabel()
         topText.textColor = UIColor.cardInfoViewImg
         topText.font = UIFont.CardInfoTopView
-        topText.text = "SCORE HISTORY"
+        topText.text = "CARD HISTORY"
         topText.sizeToFit()
         
         topText.frame.origin = CGPoint(x: (self.topView.bounds.width - topText.bounds.width) / 2, y: self.topViewVisibileHeight - topText.bounds.height * 0.8)
+        
         self.topView.addSubview(topText)
+        
         self.topView.addSubview(self.button)
         
         //--ADD GESTURE RECOGNIZERS--//
@@ -159,7 +246,7 @@ class CardInfoView: UIView {
     
     func addGestures(toView view:UIView) {
         
-        for direction in [UISwipeGestureRecognizer.Direction.up, UISwipeGestureRecognizer.Direction.down] {
+        for direction in self.fullInfo ? [UISwipeGestureRecognizer.Direction.down] : [UISwipeGestureRecognizer.Direction.up, UISwipeGestureRecognizer.Direction.down] {
             
             let swipe = UISwipeGestureRecognizer(target: self, action: #selector(self.swiped(_:)))
             
@@ -168,6 +255,26 @@ class CardInfoView: UIView {
             view.addGestureRecognizer(swipe)
             
         }
+    }
+    
+    func addTitleLabel(withText text:String, yValue:CGFloat)-> UILabel {
+        
+        let titleLabel = UILabel(frame: CGRect(x: self.horizontalMargin, y: yValue, width: 0, height: self.labelHeight))
+        
+        titleLabel.text = text
+        
+        titleLabel.font = UIFont.CardInfoCategory
+        
+        titleLabel.sizeToFit()
+        
+        titleLabel.frame.size = CGSize(width: titleLabel.frame.width, height: self.labelHeight)
+        
+        titleLabel.textColor = UIColor.cardInfoCategoryText
+        
+        self.mainView.addSubview(titleLabel)
+        
+        return titleLabel
+        
     }
     
     func topViewImageView(withImage image:UIImage, yPosition:CGFloat)->UIImageView {
@@ -195,6 +302,9 @@ class CardInfoView: UIView {
         }
     }
     
+    
+    //MARK: - =============== OPEN CLOSE ===============
+    
     @objc func buttonPressed() {
         self.animate()
     }
@@ -208,13 +318,13 @@ class CardInfoView: UIView {
         guard self.animating == false else { return }
         
         if self.open {
-
+            
             self.delegate?.tabViewWillClose(self)
-
+            
         } else {
-
+            
             self.delegate?.tabViewWillOpen(self)
-
+            
         }
         
         self.animating = true
@@ -236,6 +346,23 @@ class CardInfoView: UIView {
             
         }
     }
-   
-
+    
+    //MARK: - =============== POPULATE VALUES ===============
+    func populate(fromCard optCard:Card?) {
+        
+        guard let card = optCard else {return}
+        
+        self.timesSeen.text = "\(card.timesSeen)"
+        self.timesCorrect.text = "\(card.timesSeen - card.timesIncorrect)"
+        self.timesIncorrect.text = "\(card.timesIncorrect)"
+        self.interval.text = "\(card.interval)"
+        
+        guard self.fullInfo else { return }
+        
+        self.question.text = card.question
+        self.answer.text = card.answer
+        self.explanationBox.text = card.notes != "" ? card.notes : "No explanation available"
+        
+    }
+    
 }

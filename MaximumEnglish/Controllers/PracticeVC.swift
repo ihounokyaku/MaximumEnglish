@@ -95,18 +95,12 @@ class PracticeVC: CardVC {
     }()
     
     
-     lazy var shieldView:UIView = {
+     lazy var shieldView:ShieldView = {
          
-         let blurEffect = UIBlurEffect(style: .light)
-         
-         let _view = UIVisualEffectView(effect: blurEffect)
+         let _view = ShieldView(effect: ShieldBlur)
          
          _view.frame = self.view.bounds
          
-         _view.isHidden = true
-         
-         _view.alpha = 0
-     
          return _view
      }()
     
@@ -200,7 +194,7 @@ class PracticeVC: CardVC {
     override func showNextCard() {
         super.showNextCard()
         
-        self.populateInfoView()
+        self.cardInfoView.populate(fromCard: self.currentCard)
         self.hintView.descriptionText?.text = self.hintText
     }
     
@@ -210,17 +204,7 @@ class PracticeVC: CardVC {
     override func answered(_ answerType: AnserType) {
         super.answered(answerType)
         
-        self.populateInfoView()
-        
-    }
-    
-    func populateInfoView() {
-        guard let card = self.currentCard else {return}
-        
-        self.cardInfoView.timesSeen.text = "\(card.timesSeen)"
-        self.cardInfoView.timesCorrect.text = "\(card.timesSeen - card.timesIncorrect)"
-        self.cardInfoView.timesIncorrect.text = "\(card.timesIncorrect)"
-        self.cardInfoView.interval.text = "\(card.interval)"
+        self.cardInfoView.populate(fromCard: self.currentCard)
         
     }
     
@@ -313,21 +297,15 @@ extension PracticeVC:TabViewDelegate {
     
     func tabViewWillOpen(_ tabView: UIView) {
         
-        UIView.animate(withDuration: self.hintView.animationDuration) {
-            self.shieldView.isHidden = false
-            self.shieldView.alpha = 0.7
-        }
+        self.shieldView.show(withDuration: self.hintView.animationDuration)
+        
     }
     
     func tabViewWillClose(_ tabView: UIView) {
         
         self.endHintEdit()
         
-        UIView.animate(withDuration: self.hintView.animationDuration, animations: {
-            self.shieldView.alpha = 0
-        }) { (complete) in
-            self.shieldView.isHidden = true
-        }
+        self.shieldView.hide()
     }
     
     

@@ -58,7 +58,21 @@ extension UIFont {
     
     static var CardInfoCategory:UIFont{return UIFont.PrimaryRegular(size: 18)}
     
+    static var CardInfoHeader:UIFont{return UIFont.PrimaryRegular(size: 25)}
+    
     static var CardInfoItem:UIFont{return UIFont.PrimaryRegular(size: 18)}
+    
+    static var CardInfoTextBox:UIFont{return UIFont.PrimaryRegular(size: 14)}
+    
+    static var QuestionNumber:UIFont{return UIFont.PrimaryRegular(size: 22)}
+    
+    static var TestViewCellAccessory:UIFont{return UIFont.PrimaryRegular(size: 15)}
+    
+    static var TestResultValue:UIFont{return UIFont.PrimaryRegular(size: 25)}
+    
+    static var TestResultCategory:UIFont{return UIFont.PrimaryBold(size: 25)}
+    
+    static var TestResultHeader:UIFont{return UIFont.PrimaryRegular(size: 48)}
     
 }
 

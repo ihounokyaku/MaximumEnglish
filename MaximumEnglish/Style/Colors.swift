@@ -101,6 +101,9 @@ extension UIColor {
     
     static var TableOdd:UIColor{return WhitePrimary()}
     
+    static var TableCellPrimary:UIColor{return TextPrimary}
+    
+    static var FooterBkg:UIColor{return NavMenuBkg}
     
     //MARK: - ===  CARD  ===
     static var CardLeftTab:UIColor{return Secondary(alpha: 0.9)}
@@ -131,15 +134,28 @@ extension UIColor {
     
     static var ThinkingPulse:UIColor {return Secondary()}
     
+    static var QuestionNumber:UIColor {return BlackPrimary()}
+    
+    static var CardListBkg:UIColor {return PrimaryLight(alpha: 0.3)}
+    
+    
     //MARK: - ===  CARD INFO  ===
+    
     static var cardInfoViewBkg:UIColor {return Primary()}
     
     static var cardInfoViewImg:UIColor {return Secondary()}
     
-    static var cardInfoHeaderText:UIColor {return Secondary()}
+    static var cardInfoCategoryText:UIColor {return Secondary()}
     
     static var cardInfoItemText:UIColor {return WhitePrimary()}
     
-
+    static var CardInfoHeaderText:UIColor {return WhitePrimary()}
+    
+    static var CardInfoTextBoxText:UIColor{return WhitePrimary()}
+    
+    static var CardInfoTextBoxBkg:UIColor {return UIColor.clear }
+    
+    static var CardInfoDivider:UIColor{return UIColor.Secondary()}
+    
 }
 

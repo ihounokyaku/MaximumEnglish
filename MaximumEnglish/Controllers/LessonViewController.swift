@@ -13,7 +13,7 @@ import UIKit
 class LessonViewController: UIViewController, testViewDelegate {
     
     //MARK: - =============== IBOUTLETS ===============
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: StyledTableView!
     
     //MARK: - =============== VARS ===============
     var level:Level?
@@ -27,12 +27,18 @@ class LessonViewController: UIViewController, testViewDelegate {
     //MARK: - =============== SETUP ===============
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //--SETUP TABLEVIEW--//
         let nib = UINib(nibName: "LessonHeaderCell", bundle: Bundle.main)
+        
         tableView.register(nib, forHeaderFooterViewReuseIdentifier: LessonHeaderCell.reuseIdentifier!)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        
+        self.tableView.setUp(delegate: self)
+        
+        self.view.addSubview(FooterView())
+        
+        //-- Other setup--//
         self.setUI()
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -172,8 +178,13 @@ extension LessonViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
         
         cell.textLabel?.text = "    " + self.pullDownMenuItems[indexPath.row]
+        
         cell.textLabel?.font = UIFont.TableRowTitle
+        
         cell.textLabel?.textColor = UIColor.TextSecondary
+        
+        cell.selectionStyle = .none
+        
         return cell
     }
     

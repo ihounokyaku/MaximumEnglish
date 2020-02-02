@@ -154,7 +154,9 @@ class CardVC: UIViewController, AnswerButtonDelegate {
     }
     
     //-- For subclass setup --//
-    func setUp(){}
+    func setUp(){
+        self.title = lesson?.name
+    }
     
     
     //MARK: - ===  SET UI  ===
