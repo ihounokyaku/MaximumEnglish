@@ -69,6 +69,10 @@ class TestResultVC: UIViewController {
     
     var headerLabels:[UILabel] {return [self.scoreLabel, self.passFailLabel]}
     
+    var delegate:testViewDelegate?
+    
+    
+    //MARK: - =============== SETUP ===============
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,7 +83,9 @@ class TestResultVC: UIViewController {
         self.view.addSubview(self.shieldView)
         self.view.addSubview(self.cardInfoView)
         
+        self.title = "Results"
         
+        self.removeTestVCIfNecessary()
         
         self.populateFields()
         
@@ -108,6 +114,27 @@ class TestResultVC: UIViewController {
         
     }
     
+    //MARK: - ===  HANDLE RETURN TO LESSON  ===
+    
+    func removeTestVCIfNecessary() {
+        
+        guard let navController = navigationController else {return}
+        
+        let viewControllerCount = navController.viewControllers.count
+        
+        guard viewControllerCount > 2, let _ = navController.viewControllers[viewControllerCount - 2] as? TestVC else {return}
+        
+        navController.viewControllers.remove(at: viewControllerCount - 2)
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        delegate?.returnedFromTestView()
+    }
+    
+    
+    
     func populateFields() {
         
         guard let test = self.test, let lesson = test.lesson else { return }
@@ -129,13 +156,7 @@ class TestResultVC: UIViewController {
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if let vc = segue.destination as? CardViewerVC {
-            vc.card = sender as? Card
-            
-        }
-    }
+
     
     
 }
@@ -158,10 +179,6 @@ extension TestResultVC:UITableViewDataSource, UITableViewDelegate {
             cell.pass = self.test!.answersCorrect[indexPath.row]
             
         }
-        
-        //        cell.textLabel?.textColor = UIColor.WhitePrimary()
-        
-        //        cell.contentView.layer.backgroundColor = UIColor.CardListBkg.cgColor
         
         cell.textLabel?.text = "\(indexPath.row + 1).  \(card.question)"
         

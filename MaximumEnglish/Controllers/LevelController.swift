@@ -15,6 +15,8 @@ class LevelController: UIViewController {
     
     @IBOutlet weak var tableView: StyledTableView!
     
+ 
+    
     var checkedForUpdates = false
     
     var selectedLevel:Level?

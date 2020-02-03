@@ -39,6 +39,8 @@ class TestVC: CardVC {
         
     }
     
+   
+    
     override func setUp() {
         
         super.setUp()
@@ -75,9 +77,13 @@ class TestVC: CardVC {
         super.answered(answerType)
         
         guard let card = self.currentCard else { return }
+        
         if self.interval >= self.test.cards.count - 1 {
+            
             self.nextButton.label?.text = "Finish"
+            
         }
+        
         self.test.markAnswer(forCard: card, correct: answerType == .correct)
         
     }
@@ -92,15 +98,7 @@ class TestVC: CardVC {
         
         self.test.finish()
         
-        self.questionLabel.colorPassFail(pass: self.test.passed, passText: "Passed!", failText: "Failed!")
-
-        self.answerLabel.text = "\(self.test.score)/\(self.test.cards.count)"
-        
-        self.resultLabel.isHidden = true
-        
-        self.nextButton.isHidden = true
-        
-        self.speakButton.currentState = .finish
+        self.performSegue(withIdentifier: "toResult", sender: self.test)
         
     }
     
@@ -110,5 +108,18 @@ class TestVC: CardVC {
     
     override func cancelAction() {
         AlertManager.GetUserConfirmation(forAction: self.finishPressed, alertTitle: "Giving up so soon?", AlertMessage: "Your progress will not be saved!", confirmText: "Give up", cancelText: "Keep trying")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let vc = segue.destination as? TestResultVC, let test = sender as? Test {
+            
+            vc.test = test
+            vc.delegate = delegate
+            let backItem = UIBarButtonItem()
+            backItem.title = self.lessonTitle
+            navigationItem.backBarButtonItem = backItem
+        }
+        
     }
 }

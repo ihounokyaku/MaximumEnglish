@@ -42,7 +42,14 @@ class CardVC: UIViewController, AnswerButtonDelegate {
         let _label = UILabel()
         
         let height:CGFloat = 60
+        
         let y = self.answerLabel.frame.origin.y - height
+        
+        _label.lineBreakMode = .byTruncatingTail
+        
+        _label.numberOfLines = 2
+        
+        _label.adjustsFontSizeToFitWidth = true
         
         _label.frame = CGRect(x: self.labelX, y: y, width: self.labelWidth, height: height)
         
@@ -127,6 +134,7 @@ class CardVC: UIViewController, AnswerButtonDelegate {
     var currentCard:Card?
     var speechRecognizer:SpeechRecognizer!
     var speechSynthesizer:SpeechSynthesizer!
+    var lessonTitle:String?
     
     var back = false {
         didSet { self.toggleButtons() }
@@ -197,7 +205,7 @@ class CardVC: UIViewController, AnswerButtonDelegate {
         self.currentCard = card
         
         self.questionLabel.text = self.currentCard?.question
-        
+
         self.answerLabel.text = self.currentCard?.answer
         
         self.speakButton.currentState = .answer

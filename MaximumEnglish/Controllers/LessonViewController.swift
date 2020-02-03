@@ -63,9 +63,12 @@ class LessonViewController: UIViewController, testViewDelegate {
         
         if let vc = segue.destination as? CardVC {
             
+            vc.lessonTitle = self.title
+            
             vc.lesson = self.selectedLesson
             
             if let tvc = vc as? TestVC {
+            
                 tvc.delegate = self
             }
             
@@ -75,6 +78,10 @@ class LessonViewController: UIViewController, testViewDelegate {
             
         }
         
+    }
+    
+    @objc func backToInitial(sender:Any?) {
+        print("going back")
     }
     
 }

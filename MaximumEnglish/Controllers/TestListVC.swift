@@ -40,6 +40,7 @@ class TestListVC: UIViewController {
         
         self.view.addSubview(FooterView())
         
+        self.title = self.lesson?.name
         
         self.tableView.setUp(delegate: self)
         

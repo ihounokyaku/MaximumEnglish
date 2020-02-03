@@ -101,6 +101,8 @@ class PracticeVC: CardVC {
          
          _view.frame = self.view.bounds
          
+        _view.delegate = self
+        
          return _view
      }()
     
@@ -157,7 +159,11 @@ class PracticeVC: CardVC {
         self.view.addSubview(self.hintView)
         self.view.addSubview(self.cardInfoView)
         
+        
+        
     }
+    
+   
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -292,7 +298,7 @@ extension CALayer {
  }
 }
 
-extension PracticeVC:TabViewDelegate {
+extension PracticeVC:TabViewDelegate, ShieldViewDelegate {
     
     
     func tabViewWillOpen(_ tabView: UIView) {
@@ -306,6 +312,13 @@ extension PracticeVC:TabViewDelegate {
         self.endHintEdit()
         
         self.shieldView.hide()
+    }
+    
+    func ShieldViewTapped() {
+        if self.cardInfoView.open {
+            self.cardInfoView.animate()
+        }
+        
     }
     
     
