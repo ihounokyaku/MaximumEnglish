@@ -87,7 +87,9 @@ class CardInfoView: UIView {
     
     var topViewImageWidth:CGFloat {return self.topViewHeight / 10}
     
-    var topViewHeight:CGFloat {return self.fullInfo ? 0 : self.bounds.width * 0.45}
+    var topViewHeight:CGFloat {
+        print(UIScreen.main.bounds.height)
+        return self.fullInfo ? 0 : self.bounds.width * (UIScreen.main.bounds.height < 700 ? 0.40 : 0.45)}
     
     var topViewVisibileHeight:CGFloat {return self.topViewHeight / 2.8}
     

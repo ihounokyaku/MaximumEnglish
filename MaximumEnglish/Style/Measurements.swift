@@ -11,5 +11,5 @@ import UIKit
 
 let TableRowHeight:CGFloat = 44
 
-let BottomFrameHeight:CGFloat = 30
+var BottomFrameHeight:CGFloat {return UIScreen.main.bounds.height * 0.0334}
 

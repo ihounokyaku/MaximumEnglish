@@ -9,13 +9,8 @@
 import UIKit
 import SVProgressHUD
 
-class LevelController: UIViewController {
+class LevelController: StyledTableVC {
 
-    //MARK: - =============== IBOUTLETS ===============
-    
-    @IBOutlet weak var tableView: StyledTableView!
-    
- 
     
     var checkedForUpdates = false
     
@@ -27,11 +22,9 @@ class LevelController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(StyledCell.self, forCellReuseIdentifier: "Cell")
+        
         self.tableView.setUp(delegate: self)
-         
-        
-        
-        self.view.addSubview(FooterView())
         
         self.styleNavBar()
         // Do any additional setup after loading the view.

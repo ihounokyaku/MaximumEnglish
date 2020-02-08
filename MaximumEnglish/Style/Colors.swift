@@ -157,5 +157,10 @@ extension UIColor {
     
     static var CardInfoDivider:UIColor{return UIColor.Secondary()}
     
+    
+    //MARK: - =============== TEST RESULTS ===============
+    static var TestResultCategory:UIColor{ return UIColor.TextPrimary }
+    
+    static var TestResultValue:UIColor{ return UIColor.TextPrimary }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 import Speech
 
-enum AnserType:String {
+enum AnswerType:String {
     
     case correct = "Correct!"
     case incorrect = "Wrong!"
@@ -37,7 +37,10 @@ class CardVC: UIViewController, AnswerButtonDelegate {
     
     var labelWidth:CGFloat {return self.view.frame.width - self.labelX * 2}
     
+    var labelMargin:CGFloat { UIScreen.main.bounds.height * 0.022 }
+    
     lazy var questionLabel:UILabel = {
+        print(UIScreen.main.bounds.height)
         
         let _label = UILabel()
         
@@ -63,7 +66,7 @@ class CardVC: UIViewController, AnswerButtonDelegate {
         let _label = UILabel()
        
         let height:CGFloat = 40
-        let y = self.speakButton.frame.origin.y - 20 - height
+        let y = self.speakButton.frame.origin.y - self.labelMargin - height
         
         _label.frame = CGRect(x: self.labelX, y: y, width: self.labelWidth, height: height)
         
@@ -79,7 +82,7 @@ class CardVC: UIViewController, AnswerButtonDelegate {
         
         let height:CGFloat = 40
         
-        let y = self.speakButton.frame.origin.y + self.speakButton.frame.height + 20
+        let y = self.speakButton.frame.origin.y + self.speakButton.frame.height + self.labelMargin
         
         _label.frame = CGRect(x: self.labelX, y: y, width: self.labelWidth, height: height)
         
@@ -94,10 +97,15 @@ class CardVC: UIViewController, AnswerButtonDelegate {
     lazy var speakButton:AnswerButtonView = {
         let _view = AnswerButtonView()
         
-        var width = self.view.frame.width * 0.40
+        var width = self.view.frame.height * 0.185
+        print(width)
         var height = width
         var x = (self.view.frame.width - width) / 2
         var y = (self.view.frame.height - height) / 2
+        
+        if UIScreen.main.bounds.height < 700 {
+            y -= 5
+        }
         
         _view.frame = CGRect(x: x, y: y, width: width, height: height)
         
@@ -213,23 +221,19 @@ class CardVC: UIViewController, AnswerButtonDelegate {
     
     
     //-- handle correct or incorrect answers --//
-    func answered(_ answerType:AnserType) {
+    func answered(_ answerType:AnswerType) {
         
-        let correct = answerType == .correct
-        
-        self.resultLabel.colorPassFail(pass: correct, passText: "Correct!", failText: "Incorrect!")
-       
         self.back = true
         
         guard let card = self.currentCard else {return}
         
         card.timesSeen += 1
         
-        if !correct { card.timesIncorrect += 1 }
-        
-        if answerType == .incorrect && card.interval > 0 {
+        if answerType == .incorrect {
             
-            card.interval -= 1
+            card.timesIncorrect += 1
+            
+            if card.interval > 0 { card.interval -= 1 }
             
         } else if answerType == .correct {
             
@@ -315,6 +319,10 @@ extension CardVC:SpeechRecognizerDelegate {
         guard let card = currentCard else {return}
         
         let allTranscriptions = result.transcriptions.map {$0.formattedString.lettersOnly()}
+        
+        var answerType:AnswerType = .incorrect
+        
+        
         if let index = allTranscriptions.firstIndex(of: card.answer.lettersOnly()) {
             
             let confidenceRatings = result.transcriptions[index].segments.map {$0.confidence}
@@ -333,13 +341,17 @@ extension CardVC:SpeechRecognizerDelegate {
                 }
             }
             
-            if !self.back { self.answered(.correct) }
+            answerType = .correct
             
         } else {
             self.ratingView.currentRating = .bad
-            if !self.back { self.answered(.incorrect) }
+        
         }
         
+        self.resultLabel.colorPassFail(pass: answerType == .correct, passText: "Correct!", failText: "Incorrect!")
+        
+        if !self.back { self.answered(answerType) }
+                   
         self.speakButton.currentState = .listen
         
     }

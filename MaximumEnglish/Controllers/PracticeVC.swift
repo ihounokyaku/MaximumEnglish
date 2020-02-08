@@ -207,7 +207,7 @@ class PracticeVC: CardVC {
     
     //-- handle answers --//
     
-    override func answered(_ answerType: AnserType) {
+    override func answered(_ answerType: AnswerType) {
         super.answered(answerType)
         
         self.cardInfoView.populate(fromCard: self.currentCard)

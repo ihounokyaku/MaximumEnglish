@@ -11,27 +11,33 @@ import RealmSwift
 
 class TestResultVC: UIViewController {
     
-    //MARK: - =============== IBOUTLETS ===============
-    
-    @IBOutlet weak var cardTable: UITableView!
-    
-    //MARK: - ===  LABELS  ===
-    
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var passFailLabel: UILabel!
-    @IBOutlet weak var levelLabel: UILabel!
-    @IBOutlet weak var lessonLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    
-    @IBOutlet weak var levelC: UILabel!
-    @IBOutlet weak var lessonC: UILabel!
-    @IBOutlet weak var dateC: UILabel!
-    @IBOutlet weak var timeC: UILabel!
-    
-    
     
     //MARK: - =============== VARS ===============
+    
+    var tableHeight:CGFloat {return UIScreen.main.bounds.height > 700 ? 326 : self.viewHeight / 2 - 30}
+    
+    var viewHeight:CGFloat {return self.view.bounds.height - self.navBarHeight}
+    
+    lazy var resultView:TestResultView = {
+        
+        let _view = TestResultView(frame: CGRect(x: 0, y: self.navBarHeight, width: UIScreen.main.bounds.width, height: self.viewHeight - self.tableHeight - BottomFrameHeight))
+        
+        if let test = self.test {_view.populate(withTest: test)}
+        
+        return _view
+    }()
+    
+    lazy var cardTable:UITableView = {
+        
+        let tableView = UITableView(frame: CGRect(x: 0, y: self.resultView.bounds.height + self.navBarHeight, width: UIScreen.main.bounds.width, height: self.tableHeight))
+        
+        tableView.register(TestViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        return tableView
+    }()
     
     lazy var shieldView:ShieldView = {
         
@@ -63,11 +69,6 @@ class TestResultVC: UIViewController {
     
     var cards:List<Card> { return self.test?.cards ?? List<Card>()}
     
-    var valueLabels:[UILabel] {return [self.levelLabel, self.lessonLabel, self.dateLabel, self.timeLabel] }
-    
-    var categoryLabels:[UILabel] {return [self.levelC, self.lessonC, self.dateC, self.timeC] }
-    
-    var headerLabels:[UILabel] {return [self.scoreLabel, self.passFailLabel]}
     
     var delegate:testViewDelegate?
     
@@ -76,9 +77,8 @@ class TestResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.cardTable.delegate = self
-        self.cardTable.dataSource = self
-        
+        self.view.addSubview(self.resultView)
+        self.view.addSubview(self.cardTable)
         self.view.addSubview(FooterView())
         self.view.addSubview(self.shieldView)
         self.view.addSubview(self.cardInfoView)
@@ -86,33 +86,10 @@ class TestResultVC: UIViewController {
         self.title = "Results"
         
         self.removeTestVCIfNecessary()
-        
-        self.populateFields()
-        
-        // Do any additional setup after loading the view.
+
     }
     
-    func styleFields() {
-        for label in self.valueLabels {
-            
-            label.textColor = UIColor.TextPrimary
-            
-            label.font = UIFont.TestResultValue
-            
-        }
-        
-        for label in self.categoryLabels {
-            
-            label.textColor = UIColor.TextPrimary
-            
-            label.font  = UIFont.TestResultCategory
-        }
-        
-        for label in headerLabels {
-            label.font = UIFont.TestResultHeader
-        }
-        
-    }
+   
     
     //MARK: - ===  HANDLE RETURN TO LESSON  ===
     
@@ -132,31 +109,6 @@ class TestResultVC: UIViewController {
         super.viewWillDisappear(true)
         delegate?.returnedFromTestView()
     }
-    
-    
-    
-    func populateFields() {
-        
-        guard let test = self.test, let lesson = test.lesson else { return }
-        
-        self.scoreLabel.text = self.test?.scoreString
-        
-        
-        self.scoreLabel.colorPassFail(pass: test.passed)
-        
-        self.passFailLabel.colorPassFail(pass: test.passed, passText: "PASSED!", failText: "FAILED!")
-        
-        self.levelLabel.text = lesson.level[0].name
-        self.lessonLabel.text = lesson.name
-        self.dateLabel.text = test.dateStarted.toString(format: .yearMonthDayHourMin)
-        self.timeLabel.text = test.timeUsed
-        
-        self.styleFields()
-    }
-    
-    
-    
-
     
     
 }

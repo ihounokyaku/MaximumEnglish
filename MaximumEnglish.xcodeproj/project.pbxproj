@@ -30,6 +30,8 @@
 		FC1CEE3423E5916F00AF2EE8 /* TestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1CEE3223E5916F00AF2EE8 /* TestViewCell.swift */; };
 		FC1CEE3523E5916F00AF2EE8 /* TestViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC1CEE3323E5916F00AF2EE8 /* TestViewCell.xib */; };
 		FC2AC35623D5F41F00433639 /* IconFlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AC35523D5F41F00433639 /* IconFlatButton.swift */; };
+		FC4058FC23EED84100E4A87A /* StyledTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4058FB23EED84100E4A87A /* StyledTableVC.swift */; };
+		FC4058FE23EEF77900E4A87A /* TestResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4058FD23EEF77900E4A87A /* TestResultView.swift */; };
 		FC4D87CB23C38D60006B2512 /* LessonHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */; };
 		FC4D87CC23C38D60006B2512 /* LessonHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */; };
 		FC53D45423782EF80057FAE0 /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */; };
@@ -90,6 +92,8 @@
 		FC1CEE3223E5916F00AF2EE8 /* TestViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewCell.swift; sourceTree = "<group>"; };
 		FC1CEE3323E5916F00AF2EE8 /* TestViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewCell.xib; sourceTree = "<group>"; };
 		FC2AC35523D5F41F00433639 /* IconFlatButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconFlatButton.swift; sourceTree = "<group>"; };
+		FC4058FB23EED84100E4A87A /* StyledTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledTableVC.swift; sourceTree = "<group>"; };
+		FC4058FD23EEF77900E4A87A /* TestResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResultView.swift; sourceTree = "<group>"; };
 		FC4D87C923C38D60006B2512 /* LessonHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonHeaderCell.swift; sourceTree = "<group>"; };
 		FC4D87CA23C38D60006B2512 /* LessonHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonHeaderCell.xib; sourceTree = "<group>"; };
 		FC53D45323782EF80057FAE0 /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				C4A0BC70235AE127000EA12F /* LevelController.swift */,
+				FC4058FB23EED84100E4A87A /* StyledTableVC.swift */,
 				FC580447237FCB13008739EA /* TestVC.swift */,
 				FC9443CB237402D600C2C25A /* PracticeVC.swift */,
 				FC580443237FBC98008739EA /* CardVC.swift */,
@@ -296,6 +301,7 @@
 				FC8B3E0F23D75D1500F3AE7A /* CardInfoView.swift */,
 				FC9B402223E6F8B3001407E7 /* ShieldView.swift */,
 				FCC0E65A23E589A30026A579 /* FooterView.swift */,
+				FC4058FD23EEF77900E4A87A /* TestResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4058FC23EED84100E4A87A /* StyledTableVC.swift in Sources */,
 				FC1CEE3423E5916F00AF2EE8 /* TestViewCell.swift in Sources */,
 				FC9443CC237402D600C2C25A /* PracticeVC.swift in Sources */,
 				C4A0BC71235AE127000EA12F /* LevelController.swift in Sources */,
@@ -494,6 +501,7 @@
 				FCC3F6F7238D61E000C8D968 /* TestListVC.swift in Sources */,
 				C4A0BC6F235AE127000EA12F /* AppDelegate.swift in Sources */,
 				C4A0BCA2235B4995000EA12F /* DataPopulator.swift in Sources */,
+				FC4058FE23EEF77900E4A87A /* TestResultView.swift in Sources */,
 				C4A0BC93235AF9EB000EA12F /* CustomAlert.swift in Sources */,
 				FC580444237FBC98008739EA /* CardVC.swift in Sources */,
 				FCD159F123CB5B05009CB4D2 /* Measurements.swift in Sources */,

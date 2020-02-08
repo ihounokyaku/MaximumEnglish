@@ -72,7 +72,7 @@ class TestVC: CardVC {
     
     //MARK: - ===  HANDLE ANSWER  ===
 
-    override func answered(_ answerType: AnserType) {
+    override func answered(_ answerType: AnswerType) {
         
         super.answered(answerType)
         

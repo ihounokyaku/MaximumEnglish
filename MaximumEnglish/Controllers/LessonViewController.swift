@@ -10,11 +10,9 @@ import UIKit
 
 
 
-class LessonViewController: UIViewController, testViewDelegate {
+class LessonViewController: StyledTableVC, testViewDelegate {
     
-    //MARK: - =============== IBOUTLETS ===============
-    @IBOutlet weak var tableView: StyledTableView!
-    
+
     //MARK: - =============== VARS ===============
     var level:Level?
     var selectedLesson:Lesson?
@@ -26,16 +24,16 @@ class LessonViewController: UIViewController, testViewDelegate {
     
     //MARK: - =============== SETUP ===============
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        //--SETUP TABLEVIEW--//
         let nib = UINib(nibName: "LessonHeaderCell", bundle: Bundle.main)
         
-        tableView.register(nib, forHeaderFooterViewReuseIdentifier: LessonHeaderCell.reuseIdentifier!)
+        self.tableView.register(nib, forHeaderFooterViewReuseIdentifier: LessonHeaderCell.reuseIdentifier!)
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         self.tableView.setUp(delegate: self)
-        
-        self.view.addSubview(FooterView())
         
         //-- Other setup--//
         self.setUI()
